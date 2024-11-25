@@ -51,6 +51,64 @@ Route::get('/sales_dashbord/client/offer',[
     'as'    => 'offerForm'
 ]);
 //offer form end
+
+//addTradingAccount str
+Route::get('/sales_dashbord/client/add_trading_acconut',[
+    'uses'  => 'salesControl@addTradingAcc',
+    'as'    => 'addTradingAcc'
+]);
+//addTradingAcc end
+
+//addDepositAcc str
+Route::get('/sales_dashbord/client/add_deposite_acconut',[
+    'uses'  => 'salesControl@addDepositAcc',
+    'as'    => 'addDepositAcc'
+]);
+//addDepositAcc end
+
+//addWidthdrawAcc str
+Route::get('/sales_dashbord/client/add_widthdraw_acconut',[
+    'uses'  => 'salesControl@addWidthdrawAcc',
+    'as'    => 'addWidthdrawAcc'
+]);
+//addWidthdrawAcc end
+
+//trandingAccountDetail str
+Route::get('/sales_dashbord/client/trading-account-detail',[
+    'uses'  => 'salesControl@trandingAccountDetail',
+    'as'    => 'trandingAccountDetail'
+]);
+//trandingAccountDetail end
+
+//depositRequest str
+Route::get('/sales_dashbord/client/deposit_request',[
+    'uses'  => 'salesControl@depositRequest',
+    'as'    => 'depositRequest'
+]);
+//depositRequest end
+
+//depositPayment str
+Route::get('/sales_dashbord/client/deposit_payment_getway',[
+    'uses'  => 'salesControl@depositPayment',
+    'as'    => 'depositPayment'
+]);
+//depositPayment end
+
+//widthdrawRequest etr
+Route::get('/sales_dashbord/client/widthdraw_request',[
+    'uses'  => 'salesControl@widthdrawRequest',
+    'as'    => 'widthdrawRequest'
+]);
+//widthdrawRequest end
+
+//widthdrawPayment str
+Route::get('/sales_dashbord/client/widthdraw_payment_getway',[
+    'uses'  => 'salesControl@widthdrawPayment',
+    'as'    => 'widthdrawPayment'
+]);
+//widthdrawPayment end
+
+
 //**client Dashbord end */
 //end
 

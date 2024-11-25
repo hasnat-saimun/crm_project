@@ -33,32 +33,37 @@
   </div>
   <div class="tab-pane fade" id="nav-account" role="tabpanel" aria-labelledby="nav-account-tab" tabindex="0">
     <div class="card card-body">
-      @include('sales.clientDashbord.account')
+      @include('sales.clientDashbord.accountPart.account')
     </div>
   </div>
   <div class="tab-pane fade" id="nav-timeline" role="tabpanel" aria-labelledby="nav-timeline-tab" tabindex="0">
     <div class="card card-body">
-    dd
+    
+    @include('sales.clientDashbord.accountPart.idSection.ledgrers')
     </div>
   </div>
   <div class="tab-pane fade" id="nav-dipowidth" role="tabpanel" aria-labelledby="nav-dipowidth-tab" tabindex="0">
-    <div class="card card-body">
-      dd
-    </div>
+    
+      
+    @include('sales.clientDashbord.dipo&widthPart.dipositeWidthdraw')
+    
   </div>
   <div class="tab-pane fade" id="nav-kyc" role="tabpanel" aria-labelledby="nav-kyc-tab" tabindex="0">
     <div class="card card-body">
-      dd
+      
+    @include('sales.clientDashbord.accountPart.idSection.ledgrers')
     </div>
   </div>
   <div class="tab-pane fade" id="nav-mailing" role="tabpanel" aria-labelledby="nav-mailing-tab" tabindex="0">
     <div class="card card-body">
-      dd
+      
+    @include('sales.clientDashbord.accountPart.idSection.ledgrers')
     </div>
   </div>
   <div class="tab-pane fade" id="nav-tramscon" role="tabpanel" aria-labelledby="nav-tramscon-tab" tabindex="0">
     <div class="card card-body">
-      dd
+      
+    @include('sales.clientDashbord.accountPart.idSection.ledgrers')
     </div>
   </div>
 </div>

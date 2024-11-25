@@ -318,8 +318,8 @@
                 <div class="mb-3">
                     <label for="event" class="form-label">Event type</label>
                     <input type="text" class="form-control" id="event" placeholder="" name="event">
-                    </div>
-                    <div class="mb-3">
+                </div>
+                <div class="mb-3">
                     <label for="note" class="form-label">Note</label>
                     <textarea class="form-control" id="note" name="note" rows="3"></textarea>
                 </div>
@@ -333,16 +333,20 @@
 
 <!-- set pass button -->
  <!-- Modal -->
-<div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add note</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Password</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <label for="inputPassword5" class="form-label">Password</label>
-                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                <label for="pass" class="form-label">Password</label>
+                <input type="password" id="pass" class="form-control" aria-describedby="passwordHelpBlock" name="pass">
+            </div>
+            <div class="modal-body">
+                <label for="rePass" class="form-label">Repate Password</label>
+                <input type="password" id="rePass" class="form-control" aria-describedby="passwordHelpBlock" name="rePass">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Confirm</button>
@@ -353,16 +357,20 @@
 
 <!-- set edit male -->
  <!-- Modal -->
- <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add note</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Email</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <label for="inputPassword5" class="form-label">Password</label>
-                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                <label for="oldEmail" class="form-label">Old Email</label>
+                <input type="email" id="oldEmail" class="form-control" aria-describedby="passwordHelpBlock" name="oldEmail">
+            </div>
+            <div class="modal-body">
+                <label for="newmail" class="form-label">New Email</label>
+                <input type="password" id="newmail" class="form-control" aria-describedby="passwordHelpBlock" name="newmail">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Confirm</button>

@@ -1,16 +1,13 @@
-
-
-
 @extends('header') @section('header')
 <div class="col-md-6 mt-4">
     <h3 class="fw-bolder text-uppercase">
-    New deposit creation
+        Account holder gmail name
     </h3>
 </div>
 <div class="col-md-6">
     <ul class="nav-right">
         <li>
-            <a href="{{route('depositView')}}">
+            <a href="{{route('clientProfile')}}">
                 <i class="fa-duotone fa-solid fa-left-to-bracket" style="--fa-secondary-opacity: 1;"></i>
             </a>
         </li>
@@ -68,4 +65,3 @@
     </form>
 </div>
 @endsection
-
