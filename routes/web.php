@@ -6,9 +6,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/crm',[
-    'uses'  => 'mainControl@headerCon',
-    'as'    => 'headerCon'
+Route::get('/',[
+    'uses'  => 'salesControl@salesCon',
+    'as'    => 'salesCon'
 ]);
 
 Route::get('/broker_analytics',[

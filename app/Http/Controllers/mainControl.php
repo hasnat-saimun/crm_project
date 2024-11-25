@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class mainControl extends Controller
 {
     public function headercon(){
-        return view('header');
+        return view('sales.salesDashboard');
     }
 
     public function select(){
