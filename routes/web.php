@@ -228,6 +228,13 @@ Route::get('/widthdraw-payment-gateway',[
 
 //widthdraw End
 
+//matchPay str
+Route::get('/match2pay',[
+    'uses'  => 'match2payControl@matchPay',
+    'as'    => 'matchPay'
+]);
+//matchPay end
+
 //action str===
 //
 Route::get('/account-removal-requests',[
@@ -241,7 +248,10 @@ Route::get('/trading-account-requests',[
     'as'    => 'tradingAc'
 ]);
 
-
+Route::get('/trading-branch-edit-form',[
+    'uses'  => 'actionControl@branchEditform',
+    'as'    => 'branchEditform'
+]);
 //trading part end--
 //kyc str--
 Route::get('/identity-verification-requests',[

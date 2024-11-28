@@ -208,6 +208,14 @@
                                                 <span class="pcoded-mtext">Withdrawals</span>
                                             </a>
                                         </li>
+                                        <li class>
+                                            <a href="{{route('matchPay')}}" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon">
+                                                    <i class="feather icon-menu"></i>
+                                                </span>
+                                                <span class="pcoded-mtext">MATCH2PAY</span>
+                                            </a>
+                                        </li>
                                         <li class="pcoded-hasmenu">
                                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon">

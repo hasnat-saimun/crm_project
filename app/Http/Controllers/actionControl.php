@@ -25,4 +25,8 @@ class actionControl extends Controller
     public function mailing(){
         return view('action.mailing');
     }
+
+    public function branchEditform(){
+        return view('action.branchEditForm');
+    }
 }
