@@ -42,44 +42,82 @@
         <caption>List of users</caption>
         <form method="POST" class="form align-items-center" action="">
         <thead class="bg-dark report-white-font">
-            
-            
             <tr>
-                
-                <th ><input type="search" class="form-control" id="autoSizingInputGroup" placeholder="id"></th>
-                <th ><input type="search" class="form-control" id="autoSizingInputGroup" placeholder="Email"></th>
-                <th ><input class="form-control" type="search" placeholder=" Created" id="example-search-input" /></th>
-                <th ><input class="form-control" type="search" placeholder="Offer" id="offer" /></th>
-                <th class="mx-auto">Deposit</th>
-                <th >Widhtdraw</th>
-                <th ><a href="{{route('addTrading')}}"><i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i></a></th>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Created</th>
+                <th>Offre</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Deposit</th>
+                <th>Widhtdraw</th>
+                <th>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#add">
+                        <i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="add" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="addLabel">Select columns to show</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <select class="selectpicker" multiple aria-label="size 3 select example">
+                                        <option value="">Id</option>
+                                        <option value="">Created</option>
+                                        <option value="">Name</option>
+                                        <option value="">Surname</option>
+                                        <option value="">Email</option>
+                                        <option value="">Offer</option>
+                                        <option value="">Balance</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th>
                 
             </tr>
         </thead>
         </form>
         <tbody >
             <tr>
-                <td>158644</td>
-            <td>hasnat@gmail.com</td>
+                <td><a href="{{route('tradingAccountDetailes')}}" class="text-primary">158644</a></td>
+            <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
             <td>12.10.2024</td>
-            <td>saimon</td>
+            <td><a href="{{route('tradingOffer')}}" class="text-primary">stander</a></td>
+            <td>hasnat</td>
+            <td>saimun</td>
             <td><a href="{{route('tradingDepo')}}"><i class=" fa-duotone fa-solid fa-up-to-bracket fa-flip-both fa-lg rounded p-3" style="--fa-primary-color: #05b9d9; --fa-secondary-color: #05b9d9; --fa-secondary-opacity: 1;"></i></a></td>
                 <td><a href=" {{route('tradingWidth')}}"><i class="fa-duotone fa-solid fa-down-from-bracket fa-flip-vertical fa-lg rounded p-3" style="--fa-primary-color: #dc0404; --fa-secondary-color: #dc0404; --fa-secondary-opacity: 1;"></i></a>
             </tr>
             <tr>
-                <td>Dactive</td>
-                <td>yousuf@gmail.com</td>
+                
+            <td><a href="{{route('tradingAccountDetailes')}}" class="text-primary">158644</a></td>
+                <td><a href="{{route('clientProfile')}}" class="text-primary">yousuf@gmail.com</a></td>
                 <td>12.10.2024</td>
-                <td>shovo</td>
+                <td><a href="{{route('tradingOffer')}}" class="text-primary">gold</a></td>
+            <td>hasnat</td>
+            <td>saimun</td>
                 
                 <td><a href="{{route('tradingDepo')}}"><i class=" fa-duotone fa-solid fa-up-to-bracket fa-flip-both fa-lg rounded p-3" style="--fa-primary-color: #05b9d9; --fa-secondary-color: #05b9d9; --fa-secondary-opacity: 1;"></i></a></td>
                 <td><a href="{{route('tradingWidth')}}"><i class="fa-duotone fa-solid fa-down-from-bracket fa-flip-vertical fa-lg rounded p-3" style="--fa-primary-color: #dc0404; --fa-secondary-color: #dc0404; --fa-secondary-opacity: 1;"></i></a>
             </tr>
-            <tr>
-            <td>2342568766</td>
-            <td>mirza@gmail.com</td>
+            <tr>                
+                <td><a href="{{route('tradingAccountDetailes')}}" class="text-primary">158644</a></td>
+            <td><a href="{{route('clientProfile')}}" class="text-primary">mirza@gmail.com</a></td>
             <td>12.10.2024</td>
-            <td>sobuj</td>
+            <td><a href="{{route('tradingOffer')}}" class="text-primary">Normal</a></td>
+            <td>hasnat</td>
+            <td>saimun</td>
             <td><a href="{{route('tradingDepo')}}"><i class=" fa-duotone fa-solid fa-up-to-bracket fa-flip-both fa-lg rounded p-3" style="--fa-primary-color: #05b9d9; --fa-secondary-color: #05b9d9; --fa-secondary-opacity: 1;"></i></a></td>
                 <td><a href="{{route('tradingWidth')}}"><i class="fa-duotone fa-solid fa-down-from-bracket fa-flip-vertical fa-lg rounded p-3" style="--fa-primary-color: #dc0404; --fa-secondary-color: #dc0404; --fa-secondary-opacity: 1;"></i></a>
             </tr>

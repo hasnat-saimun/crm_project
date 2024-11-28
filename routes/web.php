@@ -153,6 +153,20 @@ Route::get('/trading_widthdarw',[
     'uses'  => 'tradingControl@tradingWidth',
     'as'    => 'tradingWidth'
 ]);
+
+//tradingAccountDetailes str
+Route::get('/trading-account-detailes',[
+    'uses'  => 'tradingControl@tradingAccountDetailes',
+    'as'    => 'tradingAccountDetailes'
+]);
+//tradingAccountDetailes end
+
+//tradingOffer str
+Route::get('/trading-offer',[
+    'uses'  => 'tradingControl@tradingOffer',
+    'as'    => 'tradingOffer'
+]);
+//tradingOffer end
 //trading end
 
 //deposit str
@@ -169,11 +183,16 @@ Route::get('/deposit_detailes',[
     'as'    => 'detailesDeposit'
 ]);
 
+Route::get('/deposit-payment-gateway',[
+    'uses'  => 'depositControl@DipoPaymentGte',
+    'as'    => 'DipoPaymentGte'
+]);
+
 
 //deposit ENd
 
 //bankform str
-Route::get('/payment_gaetway',[
+Route::get('/payment_gateway',[
     'uses'  => 'bankControl@paymentGte',
     'as'    => 'paymentGte'
 ]);
@@ -194,6 +213,19 @@ Route::get('/add_widthdraw',[
     'uses'  => 'widthdrawControll@widthdrawAdd',
     'as'    => 'widthdrawAdd'
 ]);
+
+//widthdrawDetailes str
+Route::get('/widthdraw-detailes',[
+    'uses'  => 'widthdrawControll@widthdrawDetailes',
+    'as'    => 'widthdrawDetailes'
+]);
+//widthdrawDetailes end
+
+Route::get('/widthdraw-payment-gateway',[
+    'uses'  => 'widthdrawControll@widthdrawPaymentGet',
+    'as'    => 'widthdrawPaymentGet'
+]);
+
 //widthdraw End
 
 //action str===
@@ -208,6 +240,8 @@ Route::get('/trading-account-requests',[
     'uses'  => 'actionControl@tradingAc',
     'as'    => 'tradingAc'
 ]);
+
+
 //trading part end--
 //kyc str--
 Route::get('/identity-verification-requests',[

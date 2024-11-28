@@ -44,11 +44,19 @@
                         <label for="amount" class="form-label">Amount</label>
                         <input type="number" class="form-control" id="amount" placeholder="" name="amount" />
                     </div>
+                    <div class="col-md-3">
+                        <label for="balance" class="form-label">Balance</label>
+                        <input type="number" class="form-control" id="balance" placeholder="" name="balance" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="credit" class="form-label">Credit</label>
+                        <input type="number" class="form-control" id="credit" placeholder="" name="credit" />
+                    </div>
                 </div>
 
                 <div class="row p-4">
                     <div class="d-grid gap-3 col-1">
-                        <a href="{{route('clientProfile')}}">
+                        <a href="{{route('depositView')}}">
                             <button type="button" class="btn btn-success">Back</button>
                         </a>
                     </div>

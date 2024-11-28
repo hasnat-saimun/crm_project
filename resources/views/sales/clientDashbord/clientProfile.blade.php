@@ -39,7 +39,7 @@
   <div class="tab-pane fade" id="nav-timeline" role="tabpanel" aria-labelledby="nav-timeline-tab" tabindex="0">
     <div class="card card-body">
     
-    @include('sales.clientDashbord.accountPart.idSection.ledgrers')
+    @include('sales.clientDashbord.timelinePart.timelinePage')
     </div>
   </div>
   <div class="tab-pane fade" id="nav-dipowidth" role="tabpanel" aria-labelledby="nav-dipowidth-tab" tabindex="0">
@@ -51,19 +51,19 @@
   <div class="tab-pane fade" id="nav-kyc" role="tabpanel" aria-labelledby="nav-kyc-tab" tabindex="0">
     <div class="card card-body">
       
-    @include('sales.clientDashbord.accountPart.idSection.ledgrers')
+    @include('sales.clientDashbord.kycPart.kycPage')
     </div>
   </div>
   <div class="tab-pane fade" id="nav-mailing" role="tabpanel" aria-labelledby="nav-mailing-tab" tabindex="0">
     <div class="card card-body">
       
-    @include('sales.clientDashbord.accountPart.idSection.ledgrers')
+    @include('sales.clientDashbord.mailing.mailingPage')
     </div>
   </div>
   <div class="tab-pane fade" id="nav-tramscon" role="tabpanel" aria-labelledby="nav-tramscon-tab" tabindex="0">
     <div class="card card-body">
       
-    @include('sales.clientDashbord.accountPart.idSection.ledgrers')
+    @include('sales.clientDashbord.tram&conPart.tram&conditionPage')
     </div>
   </div>
 </div>

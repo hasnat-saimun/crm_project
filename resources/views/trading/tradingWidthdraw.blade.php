@@ -24,7 +24,7 @@
             </div>
             <div class="card-box">
                 <div class="row mt-2">
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-2">
                         <label for="mail" class="form-label">Trading account</label>
                         <input type="email" class="form-control" id="mail" placeholder="eamil@domain.com" name="mail" />
                     </div>
@@ -35,6 +35,14 @@
                     <div class="col-md-3">
                         <label for="currency" class="form-label">Currency</label>
                         <input type="number" class="form-control" id="currency" placeholder="" name="currency" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="amount" class="form-label">Amount</label>
+                        <input type="number" class="form-control" id="amount" placeholder="" name="amount" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tradAccount" class="form-label">Trading Account</label>
+                        <input type="number" class="form-control" id="tradAccount" placeholder="" name="tradAccount" />
                     </div>
                 </div>
 

@@ -21,4 +21,12 @@ class tradingControl extends Controller
     public function tradingWidth(){
         return view('trading.tradingWidthdraw');
     }
+
+    public function tradingAccountDetailes(){
+        return view('trading.idSection.trandingAccount_AccountDetail');
+    }
+
+    public function tradingOffer(){
+        return view('trading.offer');
+    }
 }

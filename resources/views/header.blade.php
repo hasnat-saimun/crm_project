@@ -42,7 +42,7 @@
                 color: #fff !important;
             }
             .modal-backdrop {
-                z-index: 1;
+                z-index: 100;
             }
 
         </style>

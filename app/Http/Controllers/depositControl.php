@@ -13,6 +13,13 @@ class depositControl extends Controller
         return view('deposito.addDeposit');
     }
     public function detailesDeposit(){
-        return view('deposito.depositDetailes');
+        return view('deposito.dipositDetailes');
     }
+
+    public function DipoPaymentGte(){
+        return view('deposito.bankPayment');
+    }
+
+
+    
 }

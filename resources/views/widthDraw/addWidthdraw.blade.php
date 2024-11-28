@@ -45,6 +45,15 @@
                     </div>
                     
                     <div class="col-md-3">
+                        <label for="balance" class="form-label">Balance</label>
+                        <input type="balance" class="form-control" id="balance" placeholder="" name="balance" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="credit" class="form-label">Credit</label>
+                        <input type="credit" class="form-control" id="credit" placeholder="" name="amount" />
+                    </div>
+                    
+                    <div class="col-md-3">
                         <label for="tradingAc" class="form-label">Trading account</label>
                         <input type="number" class="form-control" id="tradingAc" placeholder="" name="tradingAc" />
                     </div>

@@ -44,74 +44,143 @@
 @section('body')
 <div class="card">
     <div class="col-md-12 table-responsive table-responsive-sm">
+        <table class="table table-hover table-sm">
+            <caption>
+                List of users
+            </caption>
+            <form method="POST" class="form align-items-center" action="">
+                <thead class="bg-dark report-white-font">
+                    <tr>
+                        <th><input type="search" class="form-control" id="autoSizingInputGroup" placeholder="Trading Account" /></th>
+                        <th><input type="search" class="form-control" id="autoSizingInputGroup" placeholder="Email" /></th>
 
-    <table class="table table-hover table-sm ">
-        <caption>List of users</caption>
-        <form method="POST" class="form align-items-center" action="">
-        <thead class="bg-dark report-white-font">
-            
-            
-            <tr>
-                
-                <th ><input type="search" class="form-control" id="autoSizingInputGroup" placeholder="Trading Account"></th>
-                <th ><input type="search" class="form-control" id="autoSizingInputGroup" placeholder="Email"></th>
-                <th >Amount</th>
-                <th >Net Amount</th>
-                <th ><input class="form-control" type="search" placeholder=" Created" id="example-search-input" /></th>
-                <th ><input class="form-control" type="search" placeholder="Currency" id="example-search-input" /></th>
-                <th ><input class="form-control" type="search" placeholder=" Status" id="example-search-input" /></th>
-                <th ><input class="form-control" type="search" placeholder="Payment Getway" id="example-search-input" /></th>
-                <th ><input class="form-control" type="search" placeholder="Payment Id" id="example-search-input" /></th>
-                <th ><input class="form-control" type="search" placeholder="Account manager" id="example-search-input" /></th>
-                <th ></th>
-                <th ><a href="{{route('addclient')}}"><i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i></a></th>
-                
-            </tr>
-        </thead>
-        </form>
-        <tbody >
-            <tr>
-                <td>4563768</td>
-                <td>hasnat@gmail.com</td>
-                <td>20009</td>
-                <td>90677</td>
-                <td>12.10.2024</td>
-                <td>USD</td>
-                <td>Done</td>
-                <td><a href="{{route('paymentGte')}}" class="text-primary">Bank Payment</a></td>
-                <td>56748790</td>
-                <td>Admin</td>
-                <td><a href="{{route('detailesDeposit')}}"><button type="button" class="btn btn-info btn-sm ">Detailes</button></a></td>
-            </tr>
-            <tr>
-                <td>4563768</td>
-                <td>hasnat@gmail.com</td>
-                <td>20009</td>
-                <td>90677</td>
-                <td>12.10.2024</td>
-                <td>USD</td>
-                <td>Done</td>
-                <td><a href="{{route('paymentGte')}}" class="text-primary">Bank Payment</a></td>
-                <td>56748790</td>
-                <td>Admin</td>
-                <td><a href="{{route('detailesDeposit')}}"><button type="button" class="btn btn-info btn-sm">Detailes</button></td>
-            </tr>
-            <tr>
-                <td>4563768</td>
-                <td>hasnat@gmail.com</td>
-                <td>20009</td>
-                <td>90677</td>
-                <td>12.10.2024</td>
-                <td>USD</td>
-                <td>Done</td>
-                <td><a href="{{route('paymentGte')}}" class="text-primary">USDT TRC-20</a></td>
-                <td>56748790</td>
-                <td>Admin</td>
-                <td><a href="{{route('detailesDeposit')}}"><button type="button" class="btn btn-info btn-sm">Detailes</button></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+                        <th><input class="form-control" type="search" placeholder="Name" id="example-search-input" /></th>
+                        <th><input class="form-control" type="search" placeholder="Surname" id="example-search-input" /></th>
+                        <th>Amount</th>
+                        <th>Net Amount</th>
+                        <th><input class="form-control" type="search" placeholder=" Created" id="example-search-input" /></th>
+                        <th><input class="form-control" type="search" placeholder="Currency" id="example-search-input" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Status" id="example-search-input" /></th>
+                        <th><input class="form-control" type="search" placeholder="Payment Getway" id="example-search-input" /></th>
+                        <th><input class="form-control" type="search" placeholder="Payment Id" id="example-search-input" /></th>
+                        <th><input class="form-control" type="search" placeholder="Last contact" id="example-search-input" /></th>
+                        <th><input class="form-control" type="search" placeholder="Offer" id="example-search-input" /></th>
+                        <th><input class="form-control" type="search" placeholder="Crypto address" id="example-search-input" /></th>
+                        <th><input class="form-control" type="search" placeholder="Reference coad" id="example-search-input" /></th>
+                        <th><input class="form-control" type="search" placeholder="Lead source" id="example-search-input" /></th>
+                        <th>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#add">
+                                <i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="add" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="addLabel">Select columns to show</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <select class="selectpicker" multiple aria-label="size 3 select example">
+                                                <option value="">Account Manager</option>
+                                                <option value="">Last contact</option>
+                                                <option value="">Name</option>
+                                                <option value="">Surname</option>
+                                                <option value="">Trading account</option>
+                                                <option value="">Email</option>
+                                                <option value="">Created</option>
+                                                <option value="">Status</option>
+                                                <option value="">Offer</option>
+                                                <option value="">Amount</option>
+                                                <option value="">Net amount</option>
+                                                <option value="">Currency</option>
+                                                <option value="">Payment gatway</option>
+                                                <option value="">Crypto address</option>
+                                                <option value="">Reference coad</option>
+                                                <option value="">Payment id</option>
+                                                <option value="">Lead source</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </form>
+            <tbody>
+                <tr>
+                    <td>4563768</td>
+                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
+                    <td>Hasnat</td>
+                    <td>Saimun</td>
+                    <td>57575</td>
+                    <td>75676</td>
+                    <td>10.10.2001</td>
+                    <td>USDT</td>
+                    <td>Admin</td>
+                    <td><a href="{{route('widthdrawPaymentGet')}}" class="text-primary">Bank Payment</a></td>
+                    <td>85673443647</td>
+                    <td>10.102024</td>
+                    <td>Standerd</td>
+                    <td>Bainance</td>
+                    <td>15986542368</td>
+                    <td>Ben</td>
+                    <td>
+                        <a href="{{route('widthdrawDetailes')}}"><button type="button" class="btn btn-info btn-sm">Detailes</button></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4563768</td>
+                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
+                    <td>Hasnat</td>
+                    <td>Saimun</td>
+                    <td>57575</td>
+                    <td>75676</td>
+                    <td>10.10.2001</td>
+                    <td>USDT</td>
+                    <td>Admin</td>
+                    <td><a href="{{route('widthdrawPaymentGet')}}" class="text-primary">Bank Payment</a></td>
+                    <td>85673443647</td>
+                    <td>10.102024</td>
+                    <td>Standerd</td>
+                    <td>Bainance</td>
+                    <td>15986542368</td>
+                    <td>Ben</td>
+                    <td>
+                        <a href="{{route('widthdrawDetailes')}}"><button type="button" class="btn btn-info btn-sm">Detailes</button></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4563768</td>
+                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
+                    <td>Hasnat</td>
+                    <td>Saimun</td>
+                    <td>57575</td>
+                    <td>75676</td>
+                    <td>10.10.2001</td>
+                    <td>USDT</td>
+                    <td>Admin</td>
+                    <td><a href="{{route('widthdrawPaymentGet')}}" class="text-primary">Bank Payment</a></td>
+                    <td>85673443647</td>
+                    <td>10.102024</td>
+                    <td>Standerd</td>
+                    <td>Bainance</td>
+                    <td>15986542368</td>
+                    <td>Ben</td>
+                    <td>
+                        <a href="{{route('widthdrawDetailes')}}"><button type="button" class="btn btn-info btn-sm">Detailes</button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection
 

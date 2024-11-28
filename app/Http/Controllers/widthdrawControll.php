@@ -12,4 +12,12 @@ class widthdrawControll extends Controller
     public function widthdrawAdd(){
         return view('widthDraw.addWidthdraw');
     }
+
+    public function widthdrawDetailes(){
+        return view('widthDraw.widthdrawDetailes');
+    }
+
+    public function widthdrawPaymentGet(){
+        return view('widthDraw.bankpayment');
+    }
 }
