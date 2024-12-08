@@ -19,7 +19,7 @@ class salesControl extends Controller
     }
 
     public function offerForm(){
-        return view('sales.clientDashbord.accountPart.offer');
+        return view('sales.clientDashbord.accountPart.editOffer');
     }
 
     public function addTradingAcc(){

@@ -40,9 +40,10 @@
         <tbody >
             <tr>    
                 <td>15484</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
-                <td><a href="" class="text-primary">satndard</td>
-                <td><a href="" class="text-primary">Test admin</a></td>
+                <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
+                
+            <td><a href="{{route('offerForm')}}" class="text-primary">standerd</a>  </td>
+                <td><a href="{{route('branchEditform')}}" class="text-primary">Test admin</a></td>
                 <td>Done</td>
                 <td>12.10.2024</td>
                 <td>12.10.2024</td>
@@ -59,9 +60,10 @@
             </tr>
             <tr>
                 <td>15484</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
-                <td><a href="" class="text-primary">satndard</td>
-                <td><a href="" class="text-primary">Test admin</a></td>
+                <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
+                
+            <td><a href="{{route('offerForm')}}" class="text-primary">standerd</a>  </td>
+                <td><a href="{{route('branchEditform')}}" class="text-primary">Test admin</a></td>
                 <td>Done</td>
                 <td>12.10.2024</td>
                 <td>12.10.2024</td>
@@ -78,9 +80,10 @@
             </tr>
             <tr>
                 <td>15484</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
-                <td><a href="" class="text-primary">satndard</td>
-                <td><a href="" class="text-primary">Test admin</a></td>
+                <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
+                
+            <td><a href="{{route('offerForm')}}" class="text-primary">standerd</a>  </td>
+                <td><a href="{{route('branchEditform')}}" class="text-primary">Test admin</a></td>
                 <td>Done</td>
                 <td>12.10.2024</td>
                 <td>12.10.2024</td>

@@ -6,12 +6,23 @@ use Illuminate\Http\Request;
 
 class ibControl extends Controller
 {
+    // ib Account etr
     public function ibAcc(){
-        return view('ib.ibAccount');
+        return view('ib.ibAccount.ibAccountPage');
     }
 
+    public function commissionEditpage(){
+        return view('ib.ibAccount.commissionSetupEdit');
+    }
+
+
+    // ib Account end
     public function commissionSetup(){
-        return view('ib.commissionSetup');
+        return view('ib.commissionSetup.commissionSetupPage');
+    }
+
+    public function addCommiissionSteupForm(){
+        return view('ib.commissionSetup.commissionSetupAdd');
     }
 
     public function ibCommission(){
@@ -24,5 +35,9 @@ class ibControl extends Controller
 
     public function cpaProgram(){
         return view('ib.cpaProgram');
+    }
+
+    public function addCpaProgram(){
+        return view('ib.AddCpaProgramForm');
     }
 }

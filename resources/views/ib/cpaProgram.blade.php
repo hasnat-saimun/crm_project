@@ -7,7 +7,7 @@
         <a href=""><i class="fa-regular fa-arrows-rotate-reverse fa-sm bg-info rounded p-3"></i></a>
     </div>
     <div class="col-md-3 ">
-                <a href="{{route('addTrading')}}"><i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i></a>
+                <a href="{{route('addCpaProgram')}}"><i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i></a>
             </div>
     <div class="col-md-3">
         <form method="POST" class="form" action="">
@@ -39,21 +39,21 @@
         <tbody >
             <tr>    
                 <td>15484</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
-                <td><a href="" class="text-primary">satndard</td>
-                <td><a href="" class="text-primary">Test admin</a></td>
+                <td>hasnat@gmail.com</td>
+                <td>satndard</td>
+                <td>Test admin</td>
             </tr>
             <tr>
                 <td>15484</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
-                <td><a href="" class="text-primary">satndard</td>
-                <td><a href="" class="text-primary">Test admin</a></td>
+                <td>hasnat@gmail.com</td>
+                <td>satndard</td>
+                <td>Test admin<></td>
             </tr>
             <tr>
                 <td>15484</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
-                <td><a href="" class="text-primary">satndard</td>
-                <td><a href="" class="text-primary">Test admin</a></td>
+                <td>hasnat@gmail.com</td>
+                <td>satndard</td>
+                <td>Test admin</td>
             </tr>
         </tbody>
     </table>

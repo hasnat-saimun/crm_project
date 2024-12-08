@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\leadControl;
+use App\Http\Controllers\configurationControl;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,7 +48,7 @@ Route::get('/sales_dashbord/client/profile',[
 // client profile end
 
 //offfer form str 
-Route::get('/sales_dashbord/client/offer',[
+Route::get('/sales_dashbord/client/edit-offer',[
     'uses'  => 'salesControl@offerForm',
     'as'    => 'offerForm'
 ]);
@@ -134,6 +136,11 @@ Route::get('/add_lead',[
     'uses'  => 'leadControl@addLead',
     'as'    => 'addLead'
 ]);
+
+Route::post('save-lead',[
+    leadControl::class,
+    'saveLead'
+])->name('saveLead');
 //leads end
 
 //trading str
@@ -252,6 +259,11 @@ Route::get('/trading-branch-edit-form',[
     'uses'  => 'actionControl@branchEditform',
     'as'    => 'branchEditform'
 ]);
+
+Route::get('/trading-account-request-form',[
+    'uses'  => 'actionControl@tradingAcRqForm',
+    'as'    => 'tradingAcRqForm'
+]);
 //trading part end--
 //kyc str--
 Route::get('/identity-verification-requests',[
@@ -281,12 +293,22 @@ Route::get('/ib-account',[
     'uses'  => 'ibControl@ibAcc',
     'as'    => 'ibAcc'
 ]);
+
+Route::get('/commission-edit',[
+    'uses'  => 'ibControl@commissionEditpage',
+    'as'    => 'commissionEditpage'
+]);
 //ib Account end---
 
 //commission setup str---
 Route::get('/commissions-setup',[
     'uses'  => 'ibControl@commissionSetup',
     'as'    => 'commissionSetup'
+]);
+
+Route::get('/add-commissions-setup',[
+    'uses'  => 'ibControl@addCommiissionSteupForm',
+    'as'    => 'addCommiissionSteupForm'
 ]);
 //commission setup end---
 
@@ -309,6 +331,12 @@ Route::get('/cpa-program',[
     'uses'  => 'ibControl@cpaProgram',
     'as'    => 'cpaProgram'
 ]);
+
+Route::get('/add-cpa-program',[
+    'uses'  => 'ibControl@addCpaProgram',
+    'as'    => 'addCpaProgram'
+]);
+
 //cpaProgram end
 //IB end===
 
@@ -351,10 +379,29 @@ Route::get('/cpa-report',[
 
 //configuration str
 //oparation str
+
 Route::get('/configuration/oparation',[
-    'uses'  => 'configurationControl@oparation',
+    'uses'  => 'configurationControl@oparation', //Oparation view page
     'as'    => 'oparation'
 ]);
+
+Route::get('/configuration/add-oparation',[
+    'uses'  => 'configurationControl@addOparation', //addOparation view form
+    'as'    => 'addOparation'
+]);
+
+
+Route::get('configuration/edit-oparation',[
+    configurationControl::class,            //Edit Oparation form
+    'editOparation'
+])->name('editOparation');
+
+
+Route::get('configuration/email-nonification-create',[
+    configurationControl::class,                        //Email Notification Create
+    'emailNotification'
+])->name('emailNotification');
+
 //oparation end
 
 //offers str
@@ -362,6 +409,12 @@ Route::get('/configuration/offers',[
     'uses'  => 'configurationControl@offers',
     'as'    => 'offers'
 ]);
+
+Route::get('/configuration/add-offer',[
+    configurationControl::class,                  // Add offer form
+    'addOffer'
+])->name('addOffer');
+
 //offers end
 
 //paymentyGateway str
@@ -369,6 +422,16 @@ Route::get('/configuration/payment-gateway',[
     'uses'  => 'configurationControl@paymentGateway',
     'as'    => 'paymentGateway'
 ]);
+
+Route::get('/configuration/add-payment-gateway',[
+    configurationControl::class,                  //add-payment-gateway
+    'addPaymentGateway'
+])->name('addPaymentGateway');
+
+Route::get('/configuration/edit-payment-gateway',[
+    configurationControl::class,                  // edit-payment-gateway
+    'editPaymentGateway'
+])->name('editPaymentGateway');
 //paymentyGateway end
 
 //rolesManagement str

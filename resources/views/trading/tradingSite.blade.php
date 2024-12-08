@@ -93,7 +93,7 @@
                 <td><a href="{{route('tradingAccountDetailes')}}" class="text-primary">158644</a></td>
             <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
             <td>12.10.2024</td>
-            <td><a href="{{route('tradingOffer')}}" class="text-primary">stander</a></td>
+            <td><a href="{{route('offerForm')}}" class="text-primary">standerd</a>  </td>
             <td>hasnat</td>
             <td>saimun</td>
             <td><a href="{{route('tradingDepo')}}"><i class=" fa-duotone fa-solid fa-up-to-bracket fa-flip-both fa-lg rounded p-3" style="--fa-primary-color: #05b9d9; --fa-secondary-color: #05b9d9; --fa-secondary-opacity: 1;"></i></a></td>
@@ -104,7 +104,7 @@
             <td><a href="{{route('tradingAccountDetailes')}}" class="text-primary">158644</a></td>
                 <td><a href="{{route('clientProfile')}}" class="text-primary">yousuf@gmail.com</a></td>
                 <td>12.10.2024</td>
-                <td><a href="{{route('tradingOffer')}}" class="text-primary">gold</a></td>
+                <td><a href="{{route('offerForm')}}" class="text-primary">standerd</a>  </td>
             <td>hasnat</td>
             <td>saimun</td>
                 
@@ -115,7 +115,7 @@
                 <td><a href="{{route('tradingAccountDetailes')}}" class="text-primary">158644</a></td>
             <td><a href="{{route('clientProfile')}}" class="text-primary">mirza@gmail.com</a></td>
             <td>12.10.2024</td>
-            <td><a href="{{route('tradingOffer')}}" class="text-primary">Normal</a></td>
+            <td><a href="{{route('offerForm')}}" class="text-primary">standerd</a>  </td>
             <td>hasnat</td>
             <td>saimun</td>
             <td><a href="{{route('tradingDepo')}}"><i class=" fa-duotone fa-solid fa-up-to-bracket fa-flip-both fa-lg rounded p-3" style="--fa-primary-color: #05b9d9; --fa-secondary-color: #05b9d9; --fa-secondary-opacity: 1;"></i></a></td>

@@ -15,7 +15,7 @@
         </form>
     </div>
     <div class="col-md-3">
-        <button type="button" class="btn btn-info text-uppercase btn-sm rounded">REGISTER IB ACCOUNT</button>
+        <button type="button" class="btn btn-info text-uppercase btn-sm rounded px-2" data-bs-toggle="modal" data-bs-target="#regIbAcc">REGISTER IB ACCOUNT</button>
     </div>
 </div>
 @endsection @section('body')
@@ -40,17 +40,17 @@
             <tbody>
                 <tr>
                     <td>5511855</td>
-                    <td>hasnat@gmail.com</td>
+                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
                     <td>USD</td>
                     <td>18181</td>
                     <td>EDFIG</td>
-                    <td><a href="" class="text-primary">LGNFX IB</a></td>
+                    <td><a href="{{route('commissionEditpage')}}" class="text-primary">LGNFX IB</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
-<div class="row mt-4">
+<div class="row mt-4 p-2">
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-3">
@@ -59,11 +59,15 @@
             <div class="col-md-1">
                 <a href=""><i class="fa-regular fa-arrows-rotate-reverse fa-sm bg-info rounded p-3"></i></a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <form method="POST" class="form" action="">
-                    <div class="input-group">
-                        <input class="form-control border-right-0 border" type="search" placeholder="Enter Keyword" id="example-search-input" />
-                        <div class="input-group-text bg-info"><i class="fa fa-search"></i></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="date" class="form-control" id="to" placeholder="" name="to" />
+                        </div>
+                        <div class="col-md-6">
+                            <input type="date" class="form-control" id="form" placeholder="" name="form" />
+                        </div>
                     </div>
                 </form>
             </div>
@@ -101,4 +105,36 @@
     </div>
 </div>
 
+<!-- RegIbAcc button -->
+<!-- Modal -->
+<div class="modal fade" id="regIbAcc" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="regIbAccLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="regIbAccLabel">SUB ID</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="regLink" class="form-label">Register Links</label>
+                    <input type="text" class="form-control" id="regLink" placeholder="" name="regLink" />
+                </div>
+                <div class="mb-3">
+                    <label for="leadSource" class="form-label">Optional lead source</label>
+                    <select id="supportedCurrency" name="supportedCurrency" class="form-select">
+                        <option value="islam">Facebook</option>
+                        <option value="hindu">Web</option>
+                        <option value="cristian">Google</option>
+                        <option value="cristian">Client Referral</option>
+                        <option value="cristian">Previous client</option>
+                        <option value="cristian">Youtube</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

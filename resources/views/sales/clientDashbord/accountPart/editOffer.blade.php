@@ -155,12 +155,25 @@
                 </div>
             </div>
                 <div class="row py-5">
-                    <div class="col-md-12">
-                            <div class="d-grid gap-3 col-1">
-                                <a href="">
-                                    <button type="button" class="btn btn-success">Edit</button>
-                                </a>
-                            </div>
+                    <div class="col-md-1">
+                        <a href="">
+                            <button type="button" class="btn btn-success">Edit</button>
+                        </a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="">
+                            <button type="button" class="btn btn-success">Cancle</button>
+                        </a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="">
+                            <button type="button" class="btn btn-success">Save</button>
+                        </a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="">
+                            <button type="button" class="btn btn-success">Clear</button>
+                        </a>
                     </div>
                 </div>
         </div>

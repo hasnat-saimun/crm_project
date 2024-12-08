@@ -2,14 +2,14 @@
 <div class="row mt-4">
     <div class="col-md-5">
         <div class="row">
-            <div class="col-md-6 ">
-                <h4 class="fw-bolder">Payment gateway</h4>
+            <div class="col-md-4 ">
+                <h4 class="fw-bolder">Offers</h4>
             </div>
             <div class="col-md-2">
                 <a href=""><i class="fa-regular fa-arrows-rotate-reverse fa-sm bg-info rounded p-3"></i></a>
             </div>
             <div class="col-md-2 ">
-                <a href="{{route('addTrading')}}"><i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i></a>
+                <a href="{{route('addOffer')}}"><i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i></a>
             </div>
         </div>
     </div>
@@ -27,45 +27,41 @@
         <thead class="bg-dark report-white-font">
             <tr>
                 <th>Name</th>
-                <th>method</th>
+                <th>Group</th>
+                <th>System</th>
+                <th>Branch</th>
+                <th>Intral deposit</th>
                 <th>Currency</th>
-                <th>Processing fee[%]</th>
-                <th>Deposit fee</th>
-                <th>Widthdraw fee</th>
-                <th>Deposit active</th>
-                <th>Widthdraw active</th>
+                <th>Demo</th>
             </tr>
         </thead>
         </form>
         <tbody >
             <tr>
-                <td>saimon</td>
+                <td><a href="{{route('offerForm')}}" class="text-primary">Standerd</a></td>
                 <td>hasnat</td>
                 <td>cumilla</td>
                 <td>north</td>
                 <td>hasnat</td>
                 <td>cumilla</td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
             </tr>
             <tr>
-                <td>saimon</td>
+                <td><a href="{{route('offerForm')}}" class="text-primary">Standerd</a></td>
                 <td>hasnat</td>
                 <td>cumilla</td>
                 <td>north</td>
                 <td>hasnat</td>
                 <td>cumilla</td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
             </tr>
             <tr>
-                <td>hasnat</td>
+                <td><a href="{{route('offerForm')}}" class="text-primary">Standerd</a></td>
                 <td>cumilla</td>
                 <td>north</td>
                 <td>smooth</td>
                 <td>hasnat</td>
                 <td>cumilla</td>
-                <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
             </tr>
         </tbody>

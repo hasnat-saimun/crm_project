@@ -1,13 +1,13 @@
 @extends('header') @section('header')
 <div class="col-md-6 mt-4">
     <h3 class="fw-bolder text-uppercase">
-        Bank payment
+        New payment gateway creation
     </h3>
 </div>
 <div class="col-md-6">
     <ul class="nav-right">
         <li>
-            <a href="{{route('depositView')}}">
+            <a href="{{route('paymentGateway')}}">
                 <i class="fa-duotone fa-solid fa-left-to-bracket" style="--fa-secondary-opacity: 1;"></i>
             </a>
         </li>
@@ -674,96 +674,47 @@
                     </div>
                     <div class="row mt-2 ">
                         <div class="col-md-3 mt-2">
-                            <label for="supportedCurrency" class="form-label">Supported fiat currency</label>
+                            <label for="supportedCurrency" class="form-label">Payment Method </label>
                                 <select id="supportedCurrency" name="supportedCurrency" class="form-select">
-                                    <option value="islam">Bank Transfer </option>
-                                    <option value="hindu">Manual</option>
-                                    <option value="cristian">Crypto Agent</option>
-                                    <option value="cristian">Online Payment</option>
-                                    <option value="cristian">Internal Transfer</option>
-                                    <option value="cristian">Crypto Wire Transfer</option>
-                                    <option value="cristian">Crypto Credit Card</option>
-                                    <option value="cristian">Praxis</option>
-                                    <option value="cristian">Odeon Pay</option>
-                                    <option value="cristian">Interkassa</option>
-                                    <option value="cristian">Enso</option>
-                                    <option value="cristian">Redirect Payment</option>
-                                    <option value="cristian">Flutterwave</option>
-                                    <option value="cristian">Awepay</option>
-                                    <option value="cristian">Vapay</option>
-                                    <option value="cristian">Razorpay Gateway</option>
-                                    <option value="cristian">Stripe</option>
-                                    <option value="cristian">WebPays</option>
-                                    <option value="cristian">Wintech</option>
-                                    <option value="cristian">PayRetailers</option>
-                                    <option value="cristian">Sky Crypto</option>
-                                    <option value="cristian">Sanfux</option>
-                                    <option value="cristian">PayU</option>
-                                    <option value="cristian">PayPound</option>
-                                    <option value="cristian">Noqodi</option>
-                                    <option value="cristian">Help2Pay</option>
-                                    <option value="cristian">Ozow</option>
-                                    <option value="cristian">VaultsPay</option>
-                                    <option value="cristian">BridgerPay</option>
-                                    <option value="cristian">FasaPay</option>
-                                    <option value="cristian">9Pay</option>
-                                    <option value="cristian">Zeny</option>
-                                    <option value="cristian">PayTiko</option>
-                                    <option value="cristian">Akurateco</option>
-                                    <option value="cristian">Custom Bank Transfer</option>
+                                    <option value=" VIRTUAL_PAY"> VIRTUAL_PAY</option>
+                                    <option value="INTERNAL_TRANSFER">INTERNAL_TRANSFER</option>
+                                    <option value="CRYPTO_WIRE_TRANSFER">CRYPTO_WIRE_TRANSFER</option>
+                                    <option value="TAP">TAP</option>
+                                    <option value="NOQODI">NOQODI</option>
+                                    <option value="RAZORPAY">RAZORPAY</option>
+                                    <option value="CUSTOM_BANK_TRANSFER">CUSTOM_BANK_TRANSFER</option>
+                                    <option value="VAPAY">VAPAY</option>
+                                    <option value="PAYTIKO">PAYTIKO</option>
+                                    <option value="MANUAL">MANUAL</option>
+                                    <option value="NINE_PAY">NINE_PAY</option>
+                                    <option value="FASA_PAY">FASA_PAY</option>
+                                    <option value="STRIPE">STRIPE</option>
+                                    <option value="PAYPOUND">PAYPOUND</option>
+                                    <option value="CRYPTO_CREDIT_CARD">CRYPTO_CREDIT_CARD</option>
+                                    <option value="AKURATECO">AKURATECO</option>
+                                    <option value="ONLINE_PAYMENT">ONLINE_PAYMENT</option>
+                                    <option value="FLUTTER_WAVE">FLUTTER_WAVE</option>
+                                    <option value="ODEON_PAY">ODEON_PAY</option>
+                                    <option value="SANFUX">SANFUX</option>
+                                    <option value="ZENY">ZENY</option>
+                                    <option value="SKY_CRYPTO">SKY_CRYPTO</option>
+                                    <option value="INTERKASSA">INTERKASSA</option>
+                                    <option value="VAULTS_PAY">VAULTS_PAY</option>
+                                    <option value="AWEPAY">AWEPAY</option>
+                                    <option value="HELP2PAY">HELP2PAY</option>
+                                    <option value="PRAXIS">PRAXIS</option>
+                                    <option value="OZOW">OZOW</option>
+                                    <option value="PAYU">PAYU</option>
+                                    <option value="BANK_TRANSFER">BANK_TRANSFER</option>
+                                    <option value="PAYRETAILERS">PAYRETAILERS</option>
+                                    <option value="BRIDGER_PAY">BRIDGER_PAY</option>
+                                    <option value="CRYPTO_AGENT">CRYPTO_AGENT</option>
+                                    <option value="ENSO">ENSO</option>
+                                    <option value="WEBPAYS">WEBPAYS</option>
+                                    <option value="REDIRECT_PAYMENT">REDIRECT_PAYMENT</option>
+                                    <option value="WINTECH">WINTECH</option>
                                 </select>
                         </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-3">
-                            <label for="comName" class="form-label">Compnay name</label>
-                            <input type="text" class="form-control" id="comName" placeholder="" name="comName" />
-                        </div>
-                        <div class="col-md-3">
-                            <label for="address" class="form-label">Company address</label>
-                            <input type="text" class="form-control" id="address" placeholder="" name="address" />
-                        </div>
-                        <div class="col-md-3">
-                            <label for="acNum" class="form-label">Bank account number</label>
-                            <input type="text" class="form-control" id="acNum" placeholder="" name="acNum" />
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-3">
-                                <label for="address" class="form-label">Bank address</label>
-                                <input type="text" class="form-control" id="address" placeholder="" name="address" />
-                            </div>
-                            <div class="col-md-3">
-                                <label for="bankName" class="form-label">Bank name</label>
-                                <input type="text" class="form-control" id="bankName" placeholder="" name="bankName" />
-                            </div>
-                            <div class="col-md-3">
-                                <label for="swifCode" class="form-label">Swift code</label>
-                                <input type="number" class="form-control" id="swifCode" placeholder="" name="swifCode" />
-                            </div>
-                            <div class="col-md-3">
-                                <label for="qrCode" class="form-label">QR code details</label>
-                                <input type="text" class="form-control" id="qrCode" placeholder="" name="qrCode" />
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Allow sending proof of transfer
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Required sending proof of transfer
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        
                     </div>
                 </div>
                 
@@ -773,7 +724,7 @@
                         <div class="col-md-12">
                             <div class="row p-4">
                                 <div class="d-grid gap-3 col-1   ">
-                                    <a href="{{route('depositView')}}">
+                                    <a href="{{route('paymentGateway')}}">
                                     <button type="button" class="btn btn-success ">Back</button>
                                     </a>
                                     

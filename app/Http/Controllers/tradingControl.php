@@ -23,7 +23,7 @@ class tradingControl extends Controller
     }
 
     public function tradingAccountDetailes(){
-        return view('trading.idSection.trandingAccount_AccountDetail');
+        return view('trading.idSectionEdit.trandingAccount_AccountDetail');
     }
 
     public function tradingOffer(){

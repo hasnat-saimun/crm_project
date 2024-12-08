@@ -6,18 +6,50 @@ use Illuminate\Http\Request;
 
 class configurationControl extends Controller
 {
+    // oparation str
     public function oparation(){
-        return view('configuration.oparation');
+        return view('configuration.oparation.oparationPage');
     }
 
+    public function addOparation(){
+        return view('configuration.oparation.addOparationPage');
+    }
+
+    public function editOparation(){
+        return view('configuration.oparation.oparationEditForm');
+    }
+
+    public function emailNotification(){
+        return view('configuration.oparation.emailNotificationCreate');
+    }
+
+    //opration end
+
+    //Offer str
     public function offers(){
-        return view('configuration.offers');
+        return view('configuration.offer.offersPage');
     }
+    
+    public function addOffer(){
+        return view('configuration.offer.addOffer');
+    }
+   // Offer end
 
+   //paymentGateway str
     public function paymentGateway(){
-        return view('configuration.paymentGateway');
+        return view('configuration.payment.paymentGateway');
     }
 
+    public function addPaymentGateway(){
+        return view('configuration.payment.addPaymentGateway');
+    }
+
+    public function editPaymentGateway(){
+        return view('configuration.payment.editPaymentGateway');
+    }
+
+    
+  //paymentGateway end
     public function rolesManagement(){
         return view('configuration.rolesManagement');
     }

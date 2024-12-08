@@ -29,4 +29,8 @@ class actionControl extends Controller
     public function branchEditform(){
         return view('action.branchEditForm');
     }
+
+    public function tradingAcRqForm(){
+        return view('action.tradingAccountRequestForm');
+    }
 }

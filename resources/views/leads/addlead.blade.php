@@ -15,7 +15,14 @@
 </div>
 @endsection @section('body')
 <div class="card">
-    <form method="POST" class="form" action="">
+    @if(Session::has('error'))
+        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+    @endif
+    @if(Session::has('success'))
+        <div class="alert alert-success">{{ Session::get('success') }}</div>
+    @endif
+    <form method="POST" class="form" action="{{ route('saveLead') }}">
+        @csrf
         <div class="row">
                 <div class="row mt-3">
                     <div class="col-md-12">
@@ -33,12 +40,12 @@
                             <input type="password" class="form-control" id="pass" placeholder="......." name="pass" />
                         </div>
                         <div class="col-md-3">
-                            <label for="Name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="Name" placeholder="" name="Name" />
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="" name="fullName" />
                         </div>
                         <div class="col-md-3">
-                            <label for="Surname" class="form-label">Surname</label>
-                            <input type="text" class="form-control" id="Surname" placeholder="" name="Surname" />
+                            <label for="sureName" class="form-label">Surname</label>
+                            <input type="text" class="form-control" id="sureName" placeholder="" name="sureName" />
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -75,20 +82,20 @@
                         </div>
                         <div class="col-md-3">
                             <label for="actype" class="form-label">Account type</label>
-                            <select id="actype" class="form-select">
-                                <option value="islam">EXPERIENCED </option>
-                                <option value="hindu">PROFESSIONAL </option>
-                                <option value="cristian">RETAIL</option>
+                            <select id="actype" class="form-select" name="acType">
+                                <option value="experienced">EXPERIENCED </option>
+                                <option value="professional">PROFESSIONAL </option>
+                                <option value="retail">RETAIL</option>
                             </select>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-3">
                             <label for="roll" class="form-label">Role</label>
-                            <select id="roll" class="form-select">
-                                <option value="islam">IB </option>
-                                <option value="hindu">SUB_IB </option>
-                                <option value="cristian">USER</option>
+                            <select id="roll" class="form-select" name="role">
+                                <option value="ib">IB </option>
+                                <option value="subib">SUB_IB </option>
+                                <option value="user">USER</option>
                             </select>
                         </div>
                         <div class="col-md-3">
@@ -139,8 +146,8 @@
                             <input type="text" class="form-control" id="city" placeholder="" name="city" />
                         </div>
                         <div class="col-md-4">
-                            <label for="pcoad" class="form-label">Post coad</label>
-                            <input type="number" class="form-control" id="pcoad" placeholder="" name="pcoad" />
+                            <label for="pcode" class="form-label">Post Code</label>
+                            <input type="number" class="form-control" id="pcode" placeholder="" name="pcode" />
                         </div>
                         
                     </div>
@@ -152,7 +159,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="id" class="form-label">Passport/Id number</label>
-                            <input type="number" class="form-control" id="id" placeholder="" name="id" />
+                            <input type="number" class="form-control" id="id" placeholder="" name="passid" />
                         </div>
                         <div class="col-md-4">
                             <label for="cip" class="form-label">Country of issuance of passport</label>
@@ -179,8 +186,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-6">
-                            <label for="swifcoad" class="form-label">Bank swift code</label>
-                            <input type="number" class="form-control" id="swifcoad" placeholder="" name="swifcoad" />
+                            <label for="swiftCode" class="form-label">Bank swift code</label>
+                            <input type="number" class="form-control" id="swiftCode" placeholder="" name="swiftCode" />
                         </div>
                         <div class="col-md-6">
                             <label for="bankacc" class="form-label">Bank account</label>
@@ -202,39 +209,31 @@
                     <div class="row">
                         <div class="col-md-12 ">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Creat as a diposit client
+                                <input class="form-check-input" type="radio" name="clientType" id="clientType" />
+                                <label class="form-check-label" for="clientType">
+                                    Create as a deposit client
                                 </label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-check ">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Creat trading account
+                                <input class="form-check-input" type="radio" name="clientType" id="clientType" checked />
+                                <label class="form-check-label" for="clientType">
+                                    Create trading account
                                 </label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row p-4">
                                 <div class="d-grid gap-3 col-1   ">
-                                    <a href="{{route('leads')}}">
-                                    <button type="button" class="btn btn-success ">Back</button>
-                                    </a>
+                                    <a href="{{route('leads')}}" class="btn btn-success ">Back</a>
                                     
                                 </div>
                                 <div class="d-grid gap-2 col-1   ">
-                                    <a href="">
-                                    <button type="button" class="btn btn-danger">Clear</button>
-                                    </a>
-                                    
+                                    <button type="reset" class="btn btn-danger">Clear</button>
                                 </div>
                                 <div class="d-grid gap-2 col-1 ">
-                                    <a href="">
-                                        
-                                    <button type="button" class="btn btn-info">save</button>
-                                    </a>
+                                    <button type="submit" class="btn btn-info">save</button>
                                 </div>
                             </div>
                         </div>
