@@ -7,7 +7,7 @@
 <div class="col-md-6">
     <ul class="nav-right">
         <li>
-            <a href="{{route('client')}}">
+            <a href="{{route('branchandUser')}}">
                 <i class="fa-duotone fa-solid fa-left-to-bracket" style="--fa-secondary-opacity: 1;"></i>
             </a>
         </li>
@@ -157,64 +157,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <h5 class="fw-bolder">Bank details</h5>
-                </div>
-            </div>
             <div class="card-box">
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <label for="bankname" class="form-label">Bank name</label>
-                        <input type="text" class="form-control" id="bankname" placeholder="" name="bankname" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="bankaddress" class="form-label"> Bank address</label>
-                        <input type="text" class="form-control" id="bankaddress" placeholder="" name="bankaddress" />
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <label for="swifcoad" class="form-label">Bank swift code</label>
-                        <input type="number" class="form-control" id="swifcoad" placeholder="" name="swifcoad" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="bankacc" class="form-label">Bank account</label>
-                        <input type="number" class="form-control" id="bankacc" placeholder="" name="bankacc" />
-                    </div>
-                    <div class="col-md-6 mt-2">
-                        <label for="accname" class="form-label">Account name</label>
-                        <input type="text" class="form-control" id="accname" placeholder="" name="accname" />
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <h5 class="fw-bolder">Addition option</h5>
-                </div>
-            </div>
-            <div class="card-box">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Creat as a diposit client
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Creat trading account
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
                         <div class="row p-4">
                             <div class="d-grid gap-3 col-1">
-                                <a href="{{route('client')}}">
+                                <a href="{{route('branchandUser')}}">
                                     <button type="button" class="btn btn-success">Back</button>
                                 </a>
                             </div>

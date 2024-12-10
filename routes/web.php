@@ -436,9 +436,19 @@ Route::get('/configuration/edit-payment-gateway',[
 
 //rolesManagement str
 Route::get('/configuration/roles-management',[
-    'uses'  => 'configurationControl@rolesManagement',
+    'uses'  => 'configurationControl@rolesManagement',  //rolse management page
     'as'    => 'rolesManagement'
 ]);
+
+Route::get('/configuration/add-roles-management',[
+    configurationControl::class,                        // ADD rolse management page
+    'addRolesManagement'
+])->name('addRolesManagement');
+
+Route::get('/configuration/edit-roles-management',[
+    configurationControl::class,                        // EDIT rolse management page
+    'editRolesManagement'
+])->name('editRolesManagement');
 //rolesManagement end
 
 //mlib str
@@ -449,24 +459,48 @@ Route::get('/configuration/MLIB',[
 //mlib end
 
 //banner str
-Route::get('/configuration/banners',[
-    'uses'  => 'configurationControl@banner',
-    'as'    => 'banner'
-]);
+Route::get('/configuration/banner',[
+    configurationControl::class,                        //banner main poage
+    'banner'
+])->name('banner');
+
+Route::get('/configuration/add-banner',[
+    configurationControl::class,                        // Add banner page
+    'addBanner'
+])->name('addBanner');
 //banner end
 
 //poolManagement str
+
 Route::get('/configuration/pool-management',[
-    'uses'  => 'configurationControl@poolManagement',
-    'as'    => 'poolManagement'
-]);
+    configurationControl::class,                        //poolManagement main page
+    'poolManagement'
+])->name('poolManagement');
+
+Route::get('/configuration/add-pool-management',[
+    configurationControl::class,                        // Add poolManagement page
+    'addPoolManagement'
+])->name('addPoolManagement');
 //poolManagement end
 
 //tramsConditions str
+
 Route::get('/configuration/trams&conditions',[
-    'uses'  => 'configurationControl@tramsConditions',
-    'as'    => 'tramsConditions'
-]);
+    configurationControl::class,                         // trams & conditon mani page
+    'tramsConditions'
+])->name('tramsConditions');
+
+Route::get('/configuration/add-trams&conditions',[
+    configurationControl::class,                         // trams & conditon add page
+    'addTramsConditions'
+])->name('addTramsConditions');
+
+Route::get('/configuration/edit-trams&conditions',[
+    configurationControl::class,                         // trams & conditon edit page
+    'editTramsConditions'
+])->name('editTramsConditions');
+
+
 //tramsConditions end
 
 //leadStatus str
@@ -499,9 +533,24 @@ Route::get('/configuration/cashBack',[
 
 //branchandUser str
 Route::get('/configuration/branch&user',[
-    'uses'  => 'configurationControl@branchandUser',
+    'uses'  => 'configurationControl@branchandUser',   //barnch & user main page
     'as'    => 'branchandUser'
 ]);
+
+Route::get('/configuration/branch&user/add-branch',[
+    configurationControl::class,                       //add branch page
+    'addBranch',
+])->name('addBranch');
+
+Route::get('/configuration/branch&user/edit-branch',[
+    configurationControl::class,                        // edite branch
+    'editBranch',
+])->name('editBranch');
+
+Route::get('/configuration/branch&user/add-user',[
+    configurationControl::class,                        // add user
+    'addUser',
+])->name('addUser');
 //branchandUserend
 
 //kyc str

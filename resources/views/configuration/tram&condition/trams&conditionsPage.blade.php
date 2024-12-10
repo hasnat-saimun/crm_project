@@ -9,12 +9,18 @@
                 <a href=""><i class="fa-regular fa-arrows-rotate-reverse fa-sm bg-info rounded p-3"></i></a>
             </div>
             <div class="col-md-2 ">
-                <a href="{{route('addTrading')}}"><i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i></a>
+                <a href="{{route('addTramsConditions')}}"><i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i></a>
             </div>
         </div>
     </div>
     <div class="col-md-2 d-grid gap-2 d-md-flex ">
         <button type="button" class="btn btn-info text-uppercase btn-sm rounded">Change Oeder</button>
+    </div>
+    <div class="col-md-2 d-grid gap-2 d-md-flex ">
+        <button type="button" class="btn btn-danger text-uppercase btn-sm rounded">Cencle</button>
+    </div>
+    <div class="col-md-2 d-grid gap-2 d-md-flex ">
+        <button type="button" class="btn btn-info text-uppercase btn-sm rounded">Save Oeder</button>
     </div>
 </div>
 @endsection 
@@ -39,28 +45,28 @@
         <tbody >
             <tr>
                 <td>saimon</td>
-                <td>hasnat</td>
-                <td>cumilla</td>
-                <td>north</td>
-                <td>hasnat</td>
+                <td><a href="{{route('editTramsConditions')}}" class="text-primary">https://lgnfx.com</a></td>
+                <td>10.10.2001</td>
+                <td>10.10.2010</td>
+                <td>Default, Pixel Broker</td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
             </tr>
             <tr>
                 <td>saimon</td>
-                <td>hasnat</td>
-                <td>cumilla</td>
-                <td>north</td>
-                <td>hasnat</td>
+                <td><a href="{{route('editTramsConditions')}}" class="text-primary">https://lgnfx.com</a></td>
+                <td>10.10.2001</td>
+                <td>10.10.2010</td>
+                <td>Default, Pixel Broker</td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
             </tr>
             <tr>
-                <td>hasnat</td>
-                <td>cumilla</td>
-                <td>north</td>
-                <td>smooth</td>
-                <td>hasnat</td>
+                <td>saimon</td>
+                <td><a href="{{route('editTramsConditions')}}" class="text-primary">https://lgnfx.com</a></td>
+                <td>10.10.2001</td>
+                <td>10.10.2010</td>
+                <td>Default, Pixel Broker</td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
             </tr>
