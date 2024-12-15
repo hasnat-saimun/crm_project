@@ -71,23 +71,23 @@
         </form>
         <tbody >
             <tr>    
-                <td>15484</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
+                <td><a href="{{route('viewAuditlog')}}" class="text-primary">15410.10.202484</a></td>
+                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
                 <td><a href="" class="text-primary">satndard</td>
                 <td><a href="" class="text-primary">Test admin</a></td>
                 <td>Done</td>
 
             </tr>
-            <tr>
-                <td>15484</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
+            <tr> 
+                <td><a href="{{route('viewAuditlog')}}" class="text-primary">15410.10.202484</a></td>   
+                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
                 <td><a href="" class="text-primary">satndard</td>
                 <td><a href="" class="text-primary">Test admin</a></td>
                 <td>Done</td>
             </tr>
-            <tr>
-                <td>15484</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
+            <tr>                  
+                <td><a href="{{route('viewAuditlog')}}" class="text-primary">15410.10.202484</a></td>
+                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
                 <td><a href="" class="text-primary">satndard</td>
                 <td><a href="" class="text-primary">Test admin</a></td>
                 <td>Done</td>

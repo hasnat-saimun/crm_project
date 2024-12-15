@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\leadControl;
 use App\Http\Controllers\configurationControl;
+use App\Http\Controllers\logsControl;
 
 Route::get('/', function () {
     return view('welcome');
@@ -504,31 +505,77 @@ Route::get('/configuration/edit-trams&conditions',[
 //tramsConditions end
 
 //leadStatus str
+
 Route::get('/configuration/lead-status',[
-    'uses'  => 'configurationControl@leadStatus',
-    'as'    => 'leadStatus'
-]);
+    configurationControl::class,                         // lead status main page
+    'leadStatus'
+])->name('leadStatus');
+
+Route::get('/configuration/add-lead-status',[
+    configurationControl::class,                         // lead status add page
+    'addLeadStatus'
+])->name('addLeadStatus');
+
+Route::get('/configuration/edit-lead-status',[
+    configurationControl::class,                         // lead status edit page
+    'editLeadStatus'
+])->name('editLeadStatus');
 //leadStatus end
 
 //leadAssignment str
 Route::get('/configuration/lead-assignment',[
-    'uses'  => 'configurationControl@leadAssignment',
-    'as'    => 'leadAssignment'
-]);
+    configurationControl::class,                         // lead assignment main page
+    'leadAssignment'
+])->name('leadAssignment');
+
+Route::get('/configuration/add-lead-assignment',[
+    configurationControl::class,                         // lead assignment add page
+    'addLeadAssignment'
+])->name('addLeadAssignment');
+
+Route::get('/configuration/edit-lead-assignment',[
+    configurationControl::class,                         // lead assignment edit page
+    'editLeadAssignment'
+])->name('editLeadAssignment');
+
 //leadAssignment end
 
 //depositBonuse str
 Route::get('/configuration/deposit-bonuses',[
-    'uses'  => 'configurationControl@depositBonuse',
-    'as'    => 'depositBonuse'
-]);
+    configurationControl::class,                         // deposit bonuses main page
+    'depositBonuse'
+])->name('depositBonuse');
+
+Route::get('/configuration/add-eposit-bonuses',[
+    configurationControl::class,                         // deposit bonuses add page
+    'addDepositBonuse'
+])->name('addDepositBonuse');
+
+Route::get('/configuration/edit-deposit-bonuses',[
+    configurationControl::class,                         // deposit bonuses edit page
+    'editDepositBonuse'
+])->name('editDepositBonuse');
+
 //depositBonuse end
 
 //cashBack str
+
 Route::get('/configuration/cashBack',[
-    'uses'  => 'configurationControl@cashBack',
-    'as'    => 'cashBack'
-]);
+    configurationControl::class,                         //   cash back main page
+    'cashBack'
+])->name('cashBack');
+
+
+Route::get('/configuration/add-cashBack',[
+    configurationControl::class,                         //   cash back add page
+    'addCashBack'
+])->name('addCashBack');
+
+
+Route::get('/configuration/edit-cashBack',[
+    configurationControl::class,                         //   cash back edit page
+    'editCashBack'
+])->name('editCashBack');
 //cashBack end
 
 //branchandUser str
@@ -564,15 +611,28 @@ Route::get('/configuration/kyc',[
 //logs styr
 //crmAudit str
 Route::get('/logs/crm-audit-logs',[
-    'uses'  => 'logsControl@crmAudit',
-    'as'    => 'crmAudit'
-]);
+    logsControl::class,                        // audit log page
+    'crmAudit',
+])->name('crmAudit');
+
+
+Route::get('/logs/crm-view-audit-logs',[
+    logsControl::class,                        // view-audit log page
+    'viewAuditlog',
+])->name('viewAuditlog');
+
 //crmAudit end
 
 //clientLog str
-route::get('/logs/cilent_logs',[
- 'uses'=>'logsControl@clientLog',
- 'as' => 'clientLog'
-]);
+
+Route::get('/logs/crm-cilent-logs',[
+    logsControl::class,                        // client log page
+    'clientLog',
+])->name('clientLog');
+
+Route::get('/logs/crm-view-cilent-log',[
+    logsControl::class,                        // view-client log page
+    'viewClienlog',
+])->name('viewClienlog');
 //clientLog end
 // logs end

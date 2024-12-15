@@ -106,22 +106,65 @@ class configurationControl extends Controller
         return view('configuration.tram&condition.editTrams&conditions');  // trams & conditon edit page
     }
 // trams & conditon end
+
+//lead status str 
     public function leadStatus(){
-        return view('configuration.leadStatus');
+        return view('configuration.leadStatus.leadStatusPage');  // lead status main page
     }
 
+    public function addLeadStatus(){
+        return view('configuration.leadStatus.addLeadStatus');  // lead status add page
+    }
+
+    public function editLeadStatus(){
+        return view('configuration.leadStatus.editLeadStatus');  // lead status edit page
+    }
+//lead status end
+
+//lead assignment str
     public function leadAssignment(){
-        return view('configuration.leadAssignment');
+        return view('configuration.leadAssignment.leadAssignmentPage');
     }
 
+    public function addLeadAssignment(){
+        return view('configuration.leadAssignment.addLeadAssignment');
+    }
+
+    public function editLeadAssignment(){
+        return view('configuration.leadAssignment.editLeadAssignment');
+    }
+
+
+//lead assignment end
     
+// deposit bonus str
     public function depositBonuse(){
-        return view('configuration.depositBonuse');
+        return view('configuration.depositBonuse.depositBonusePage');
     }
 
-    public function cashBack(){
-        return view('configuration.cashBack');
+    public function addDepositBonuse(){
+        return view('configuration.depositBonuse.addDepositbonuse');
     }
+
+    public function editDepositBonuse(){
+        return view('configuration.depositBonuse.editDepositbonuse');
+    }
+
+//deposit bonus end
+
+//cash back str
+    public function cashBack(){
+        return view('configuration.cashBack.cashBackPage'); //cash back main page
+    }
+
+    public function addCashBack(){
+        return view('configuration.cashBack.addCashback');  //add cash back
+    }
+
+    public function editCashBack(){
+        return view('configuration.cashBack.editCashback'); //edit cash back
+    }
+//cash back end
 //Branch and User str
     public function branchandUser(){
         return view('configuration.branch&User.branch&user');  //barnch & user main page

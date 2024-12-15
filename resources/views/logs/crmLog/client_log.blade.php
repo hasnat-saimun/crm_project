@@ -52,17 +52,15 @@
         </thead>
         </form>
         <tbody >
-            <tr>    
-                <td>15484</td>
-                <td><a href="" class="text-primary">satndard</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
+            <tr> 
+                <td><a href="{{route('viewClienlog')}}" class="text-primary">10.10.2024</a></td>   
+                <td>15484</td>   
                 <td><a href="" class="text-primary">Test admin</a></td>
 
             </tr>
             <tr>
-                <td>15484</td>
-                <td><a href="" class="text-primary">satndard</td>
-                <td><a href="" class="text-primary">hasnat@gmail.com</td>
+            <td><a href="{{route('viewClienlog')}}" class="text-primary">10.10.2024</a></td>  
+                <td><a href="" class="text-primary">satndard</td>                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
                 <td><a href="" class="text-primary">Test admin</a></td>
             </tr>
         </tbody>

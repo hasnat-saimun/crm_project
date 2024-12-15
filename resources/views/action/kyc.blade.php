@@ -1,4 +1,6 @@
-@extends('header') @section('header')
+@extends('header') 
+
+@section('header')
 <div class="row mt-4">
     <div class="col-md-3">
         <div class="row">

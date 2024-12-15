@@ -9,7 +9,7 @@
                 <a href=""><i class="fa-regular fa-arrows-rotate-reverse fa-sm bg-info rounded p-3"></i></a>
             </div>
             <div class="col-md-2 ">
-                <a href="{{route('addTrading')}}"><i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i></a>
+                <a href="{{route('addLeadStatus')}}"><i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i></a>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <form method="POST" class="form align-items-center" action="">
         <thead class="bg-dark report-white-font">
             <tr>
-                <th>Name</th>
+                <th>name</th>
                 <th>Lead stage</th>
                 <th>Enabled</th>
             </tr>
@@ -31,18 +31,18 @@
         </form>
         <tbody >
             <tr>
-                <td>saimon</td>
-                <td>hasnat</td>
+                <td><a href="{{route('editLeadStatus')}}" class="text-primary">Bad managed lead</a></td>
+                <td>READY_TO_DEPOSIT</td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
             </tr>
             <tr>
-                <td>saimon</td>
-                <td>hasnat</td>
+                <td><a href="{{route('editLeadStatus')}}" class="text-primary">Call back today</a></td>
+                <td>READY_TO_DEPOSIT</td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
             </tr>
             <tr>
-                <td>hasnat</td>
-                <td>cumilla</td>
+                <td><a href="{{route('editLeadStatus')}}" class="text-primary">Potential</a></td>
+                <td>NO_POTENTIAL</td>
                 <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
             </tr>
         </tbody>
