@@ -1,4 +1,5 @@
-@extends('header') @section('header')
+@extends('header') 
+@section('header')
 <div class="row mt-4">
     <div class="col-md-3">
         <div class="row">
@@ -45,130 +46,93 @@
         </div>
     </div>
 </div>
-@endsection @section('body')
+@endsection 
+@section('body')
 <div class="card">
     <div class="col-md-12 table-responsive table-responsive-sm">
-        <table class="table table-hover table-sm">
-            <caption>
-                List of users
-            </caption>
-            <form method="POST" class="form align-items-center" action="">
+        <caption>
+            List of users
+        </caption>
+        <form method="POST" class="form align-items-center" action="">
+            <table class="table table-hover table-sm" id="myTable">
                 <thead class="bg-dark report-white-font">
                     <tr>
                         <th><input type="search" class="form-control" id="autoSizingInputGroup" placeholder="online" /></th>
                         <th><input type="search" class="form-control" id="autoSizingInputGroup" placeholder="Email" /></th>
                         <th><input class="form-control" type="search" placeholder="Name" id="Name" /></th>
-                        <th><input class="form-control" type="search" placeholder="Surname " id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Created" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder="Last contact " id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Status" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder="Manager " id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Branch" id="example-search-input" /></th>`
-                        <th><input class="form-control" type="search" placeholder=" Affiliate" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Phone number" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Language" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Role" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Lead status" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Lead source" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Last online" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Free margin" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Equity" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Margin level" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Total deposits" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Total withdrawals" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Last deposit" id="example-search-input" /></th>
-                        <th><input class="form-control" type="search" placeholder=" Last note" id="example-search-input" /></th`>
-                        <th>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#add">
-                                <i class="fa-duotone fa-solid fa-user-plus fa-sm bg-success rounded p-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="add" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="addLabel">Select columns to show</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <select class="selectpicker" multiple aria-label="size 3 select example">
-                                                <option value="">Online</option>
-                                                <option value="">Email</option>
-                                                <option value="">Name</option>
-                                                <option value="">Surname</option>
-                                                <option value="">Last contact</option>
-                                                <option value="">Created</option>
-                                                <option value="">Status</option>
-                                                <option value="">Manager</option>
-                                                <option value="">Affiliate</option>
-                                                <option value="">Branch</option>
-                                                <option value="">Country</option>
-                                                <option value="">Phone number</option>
-                                                <option value="">Language</option>
-                                                <option value="">Role</option>
-                                                <option value="">Lead status</option>
-                                                <option value="">Lead source</option>
-                                                <option value="">Last online</option>
-                                                <option value="">Balance</option>
-                                                <option value="">Free margin</option>
-                                                <option value="">Equity</option>
-                                                <option value="">Margin level</option>
-                                                <option value="">Total deposits</option>
-                                                <option value="">Total withdrawals</option>
-                                                <option value="">Last deposit</option>
-                                                <option value="">Last note</option>
-                                            </select>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </th>
+                        <th><input class="form-control" type="search" placeholder="Surname " id="sureName" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Created" id="createdAt" /></th>
+                        <th><input class="form-control" type="search" placeholder="Last contact " id="lastContact" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Status" id="status" /></th>
+                        <th><input class="form-control" type="search" placeholder="Manager " id="manager" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Branch" id="branch" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Affiliate" id="affiliate" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Phone number" id="phoneNumber" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Language" id="language" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Role" id="rollNumber" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Lead status" id="leadStatus" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Lead source" id="leadSource" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Last online" id="lastOnline" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Free margin" id="freeMargin" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Equity" id="equity" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Margin level" id="marginLevel" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Total deposits" id="totalDeposit" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Total withdrawals" id="totalWithdrawal" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Last deposit" id="lastDeposit" /></th>
+                        <th><input class="form-control" type="search" placeholder=" Last note" id="lastNote" /></th>
                     </tr>
                 </thead>
-            </form>
-            <tbody>
-                <tr>
-                    <td>Acitv</td>
-                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
-                    <td>hasnat</td>
-                    <td>saimon</td>
-                    <td>12.10.2024</td>
-                    <td>25.12.2024</td>
-                    <td>New</td>
-                    <td>Tast admin</td>
-                    <td>Admin</td>
-                </tr>
-                <tr>
-                    <td>Dactive</td>
-                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
-                    <td>shovo</td>
-                    <td>12.10.2024</td>
-                    <td>25.12.2024</td>
-                    <td>New</td>
-                    <td>Tast admin</td>
-                    <td>Admin</td>
-                    <td>Admin</td>
-                </tr>
-                <tr>
-                    <td>Active</td>
-                    <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
-                    <td>Mirza</td>
-                    <td>sobuj</td>
-                    <td>12.10.2024</td>
-                    <td>25.12.2024</td>
-                    <td>New</td>
-                    <td>Tast admin</td>
-                    <td>Admin</td>
-                </tr>
-            </tbody>
-        </table>
+                <tbody>
+                    @php
+                        $x = 1;
+                    @endphp
+                    @foreach($clients as $client)
+                    <tr>
+                        <td>Active</td>
+                        <td>
+                            <a href="{{ route('clientProfile') }}" class="text-primary">
+                                {{ $client['email'] ?? 'N/A' }}
+                            </a>
+                        </td>
+                        <td>{{ $client['firstName'] ?? 'N/A' }}</td>
+                        <td>{{ $client['lastName'] ?? 'N/A' }}</td>
+                        <td>{{ $client['created'] ?? 'N/A' }}</td>
+                        <td>{{ $client['lastContact'] ?? 'N/A' }}</td>
+                        <td>{{ $client['status'] ?? 'N/A' }}</td>
+                        <td>{{ $client['manager'] ?? 'N/A' }}</td>
+                        <td>{{ $client['affiliate'] ?? 'N/A' }}</td>
+                        <td>{{ $client['branch'] ?? 'N/A' }}</td>
+                        <td>{{ $client['phone'] ?? 'N/A' }}</td>
+                        <td>{{ $client['language'] ?? 'N/A' }}</td>
+                        <td>{{ $client['role'] ?? 'N/A' }}</td>
+                        <td>{{ $client['status'] ?? 'N/A' }}</td> {{-- Lead status if you prefer --}}
+                        <td>{{ $client['country'] ?? 'N/A' }}</td> {{-- Or Lead source if you add it --}}
+                        <td>{{ $client['lastOnline'] ?? 'N/A' }}</td>
+                        <td>{{ $client['freeMargin'] ?? 'N/A' }}</td>
+                        <td>{{ $client['equity'] ?? 'N/A' }}</td>
+                        <td>{{ $client['marginLevel'] ?? 'N/A' }}</td>
+                        <td>{{ $client['totalDeposits'] ?? 'N/A' }}</td>
+                        <td>{{ $client['totalWithdrawals'] ?? 'N/A' }}</td>
+                        <td>{{ $client['lastDeposit'] ?? 'N/A' }}</td>
+                        <td>Last note</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </form>
     </div>
 </div>
+<script>
+  $(function () {
+  var table = $('#myTable').DataTable({ /* options */ });
+  table.columns().every(function (idx) {
+    $('thead th:eq(' + idx + ') input').on('keyup change clear', () => {
+      table.column(idx).search($(event.target).val()).draw();
+    });
+  });
+});
+
+</script>
+
 
 @endsection

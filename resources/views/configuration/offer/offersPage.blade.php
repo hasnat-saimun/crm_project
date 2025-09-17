@@ -36,34 +36,49 @@
             </tr>
         </thead>
         </form>
-        <tbody >
-            <tr>
-                <td><a href="{{route('offerForm')}}" class="text-primary">Standerd</a></td>
-                <td>hasnat</td>
-                <td>cumilla</td>
-                <td>north</td>
-                <td>hasnat</td>
-                <td>cumilla</td>
-                <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-            </tr>
-            <tr>
-                <td><a href="{{route('offerForm')}}" class="text-primary">Standerd</a></td>
-                <td>hasnat</td>
-                <td>cumilla</td>
-                <td>north</td>
-                <td>hasnat</td>
-                <td>cumilla</td>
-                <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-            </tr>
-            <tr>
-                <td><a href="{{route('offerForm')}}" class="text-primary">Standerd</a></td>
-                <td>cumilla</td>
-                <td>north</td>
-                <td>smooth</td>
-                <td>hasnat</td>
-                <td>cumilla</td>
-                <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-            </tr>
+
+        @php
+    /**
+     * Safely render values coming from API:
+     * - arrays/objects → JSON or joined string
+     * - booleans → "Yes"/"No"
+     * - null → fallback
+     */
+    function show_val($value, $fallback = 'N/A') {
+        if (is_null($value)) return $fallback;
+        if (is_bool($value)) return $value ? 'Yes' : 'No';
+        if (is_array($value) || is_object($value)) {
+            // Try some common patterns: name, id, code; otherwise JSON
+            $v = (array)$value;
+            foreach (['name','title','symbol','code','id'] as $k) {
+                if (array_key_exists($k, $v) && !is_array($v[$k]) && !is_object($v[$k])) {
+                    return (string)$v[$k];
+                }
+            }
+            return json_encode($value, JSON_UNESCAPED_UNICODE);
+        }
+        return (string)$value;
+    }
+@endphp
+
+        <tbody>
+            @foreach($offers as $offer)
+                <tr>
+                    <td>
+                        <a href="{{ route('offerForm') }}" class="text-primary">
+                            {{ show_val(data_get($offer, 'name'), 'No Name') }}
+                        </a>
+                    </td>
+                    <td>{{ show_val(data_get($offer, 'group')) }}</td>
+                    <td>{{ show_val(data_get($offer, 'system')) }}</td>
+                    <td>{{ show_val(data_get($offer, 'branch')) }}</td>
+                    <td>{{ show_val(data_get($offer, 'intra_deposit')) }}</td>
+                    <td>{{ show_val(data_get($offer, 'currency')) }}</td>
+                    <td>{{ show_val(data_get($offer, 'demo')) }}</td>
+                </tr>
+            @endforeach
+
+
         </tbody>
     </table>
 </div>

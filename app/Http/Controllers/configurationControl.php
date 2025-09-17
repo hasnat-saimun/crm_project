@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class configurationControl extends Controller
 {
@@ -27,7 +28,19 @@ class configurationControl extends Controller
 
     //Offer str
     public function offers(){
-        return view('configuration.offer.offersPage');
+        $response = Http::withHeaders([
+            'Content-Type' => env('API_CONTENT_TYPE'),
+            'Authorization' => env('API_AUTHORIZATION'),
+        ])->get(env('API_BASE_URL').'offers');
+
+        // Convert JSON response into array
+        $data = $response->json();
+        $offers = $data['offers'] ?? $data['data'] ?? $data;
+
+        // Debug result
+        // dd($data);
+
+        return view('configuration.offer.offersPage', ['offers' => $offers]);
     }
     
     public function addOffer(){

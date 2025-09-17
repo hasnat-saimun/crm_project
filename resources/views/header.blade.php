@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Mirrored from demo.dashboardpack.com/admindek-html/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Sep 2024 12:31:23 GMT -->
     <head>
         <title>CRM ||| Admin Controling Site</title>
 
@@ -34,7 +33,13 @@
         <link rel="stylesheet" type="text/css" href="{{asset('public/admindek-html/')}}/files/assets/css/style.css" />
         <link rel="stylesheet" type="text/css" href="{{asset('public/admindek-html/')}}/files/assets/css/widget.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
-  referrerpolicy="no-referrer" />
+        referrerpolicy="no-referrer" />
+
+        <!-- DataTables CSS -->
+        <!-- DataTables (Bootstrap 4) CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
+
+
         <!-- font owsam -->
         <script src="https://kit.fontawesome.com/32dcd4a478.js" crossorigin="anonymous"></script>
         <style>
@@ -491,10 +496,12 @@
                 <p>Sorry for the inconvenience!</p>
             </div>
         <![endif]-->
-
-        <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-        <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/bower_components/jquery/js/jquery.min.js"></script>
-        <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <!-- DataTables core + Bootstrap 4 integration -->
+        <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
+        
         <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/bower_components/popper.js/js/popper.min.js"></script>
         <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/bower_components/bootstrap/js/bootstrap.min.js"></script>
 
@@ -502,10 +509,7 @@
 
         <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
 
-        <script src="{{asset('public/admindek-html/')}}/files/assets/pages/chart/float/jquery.flot.js"></script>
-        <script src="{{asset('public/admindek-html/')}}/files/assets/pages/chart/float/jquery.flot.categories.js"></script>
-        <script src="{{asset('public/admindek-html/')}}/files/assets/pages/chart/float/curvedLines.js"></script>
-        <script src="{{asset('public/admindek-html/')}}/files/assets/pages/chart/float/jquery.flot.tooltip.min.js"></script>
+        
 
         <script src="{{asset('public/admindek-html/')}}/files/bower_components/chartist/js/chartist.js"></script>
 
@@ -515,11 +519,7 @@
 
         <script src="{{asset('public/admindek-html/')}}/files/assets/js/pcoded.min.js"></script>
         <script src="{{asset('public/admindek-html/')}}/files/assets/js/vertical/vertical-layout.min.js"></script>
-        <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/assets/pages/dashboard/custom-dashboard.min.js"></script>
         <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/assets/js/script.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </body>
-
-    <!-- Mirrored from demo.dashboardpack.com/admindek-html/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Sep 2024 12:32:14 GMT -->
 </html>
-@yield('adminContent')
