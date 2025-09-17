@@ -498,12 +498,15 @@
         <![endif]-->
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <!-- Bootstrap 4 (load this BEFORE DataTables’ BS4 adapter) -->
+        <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/bower_components/popper.js/js/popper.min.js"></script>
+        <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/bower_components/bootstrap/js/bootstrap.min.js"></script>
+
         <!-- DataTables core + Bootstrap 4 integration -->
         <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
-        
-        <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/bower_components/popper.js/js/popper.min.js"></script>
-        <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/bower_components/bootstrap/js/bootstrap.min.js"></script>
+
 
         <script src="{{asset('public/admindek-html/')}}/files/assets/pages/waves/js/waves.min.js"></script>
 
@@ -521,5 +524,26 @@
         <script src="{{asset('public/admindek-html/')}}/files/assets/js/vertical/vertical-layout.min.js"></script>
         <script type="text/javascript" src="{{asset('public/admindek-html/')}}/files/assets/js/script.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script>
+  $(function () {
+    var table = $('#myTable').DataTable({
+      paging: true,
+      searching: true,
+      ordering: true,
+      lengthMenu: [5, 10, 25, 50],
+      language: { search: "Filter records:" }
+    });
+
+    // Per-column search
+    table.columns().every(function (idx) {
+      var col = this;
+      $('thead th:eq(' + idx + ') input')
+        .on('keyup change clear', function () {
+          col.search(this.value).draw();
+        });
+    });
+  });
+</script>
     </body>
 </html>
