@@ -28,10 +28,25 @@ class configurationControl extends Controller
 
     //Offer str
     public function offers(){
+        
+        // Debug the URL construction
+        $baseUrl = env('API_BASE_URL');
+        $fullUrl = rtrim($baseUrl, '/') . '/offers';
+        
+        \Log::info('Client API Request:', [
+            'base_url' => $baseUrl,
+            'full_url' => $fullUrl,
+            'authorization' => env('API_AUTHORIZATION')
+        ]);
+
         $response = Http::withHeaders([
-            'Content-Type' => env('API_CONTENT_TYPE'),
-            'Authorization' => env('API_AUTHORIZATION'),
-        ])->get(env('API_BASE_URL').'offers');
+            'Content-Type'  => env('API_CONTENT_TYPE'),
+            'Authorization' => 'Bearer ' . env('API_AUTHORIZATION'),
+        ])->get($fullUrl);
+
+        if (!$response->successful()) {
+            abort(502, 'Broker API error: '.$response->status());
+        }
 
         // Convert JSON response into array
         $data = $response->json();

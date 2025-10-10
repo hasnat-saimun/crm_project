@@ -39,18 +39,17 @@
     <div class="col-md-12 table-responsive table-responsive-sm">
 
     <table class="table table-hover table-sm ">
-        <caption>List of users</caption>
-        <form method="POST" class="form align-items-center" action="">
+        <caption>List of Trading Accounts</caption>
         <thead class="bg-dark report-white-font">
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Created</th>
-                <th>Offre</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Deposit</th>
-                <th>Widhtdraw</th>
+            <tr class="text-center">
+                <th class="text-white">Id</th>
+                <th class="text-white">Created<br>
+                    <small>From <input type="date" class="form-control form-control-sm d-inline" style="width:auto;"> To <input type="date" class="form-control form-control-sm d-inline" style="width:auto;"></small>
+                </th>
+                <th class="text-white">Email</th>
+                <th class="text-white">Offer</th>
+                <th class="text-white">Balance</th>
+                <th class="text-white">Operations</th>
                 <th>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#add">
@@ -87,40 +86,37 @@
                 
             </tr>
         </thead>
-        </form>
-        <tbody >
-            <tr>
-                <td><a href="{{route('tradingAccountDetailes')}}" class="text-primary">158644</a></td>
-            <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
-            <td>12.10.2024</td>
-            <td><a href="{{route('offerForm')}}" class="text-primary">standerd</a>  </td>
-            <td>hasnat</td>
-            <td>saimun</td>
-            <td><a href="{{route('tradingDepo')}}"><i class=" fa-duotone fa-solid fa-up-to-bracket fa-flip-both fa-lg rounded p-3" style="--fa-primary-color: #05b9d9; --fa-secondary-color: #05b9d9; --fa-secondary-opacity: 1;"></i></a></td>
-                <td><a href=" {{route('tradingWidth')}}"><i class="fa-duotone fa-solid fa-down-from-bracket fa-flip-vertical fa-lg rounded p-3" style="--fa-primary-color: #dc0404; --fa-secondary-color: #dc0404; --fa-secondary-opacity: 1;"></i></a>
+        <tbody>
+            @if(empty($accounts))
+                <tr>
+                    <td colspan="8" class="text-center text-muted">
+                        <p>No trading accounts found.</p>
+                        <small>Debug: {{ isset($accounts) ? 'Variable exists but empty' : 'Variable not set' }}</small>
+                    </td>
+                </tr>
+            @endif
+            @foreach($accounts as $index => $account)
+            <tr class="text-center">
+                <td>{{ $account['login'] ?? ($account['id'] ?? '25259') }}</td>
+                <td>{{ $account['created'] ? \Carbon\Carbon::parse($account['created'])->format('d.m.Y H:i:s') : '10.10.2025 11:54:16' }}</td>
+                <td>
+                    <a href="{{route('clientProfile')}}" class="text-info">
+                        {{ $account['email'] ?? 'test@example.com' }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{route('offerForm')}}" class="text-info">
+                        {{ $account['group'] ?? 'ELA Test EUR' }}
+                    </a>
+                </td>
+                <td>{{ $account['balance'] ?? '' }}</td>
+                <td>
+                    <a href="{{route('tradingDepo')}}" class="btn btn-info btn-sm">
+                        DEPOSIT
+                    </a>
+                </td>
             </tr>
-            <tr>
-                
-            <td><a href="{{route('tradingAccountDetailes')}}" class="text-primary">158644</a></td>
-                <td><a href="{{route('clientProfile')}}" class="text-primary">yousuf@gmail.com</a></td>
-                <td>12.10.2024</td>
-                <td><a href="{{route('offerForm')}}" class="text-primary">standerd</a>  </td>
-            <td>hasnat</td>
-            <td>saimun</td>
-                
-                <td><a href="{{route('tradingDepo')}}"><i class=" fa-duotone fa-solid fa-up-to-bracket fa-flip-both fa-lg rounded p-3" style="--fa-primary-color: #05b9d9; --fa-secondary-color: #05b9d9; --fa-secondary-opacity: 1;"></i></a></td>
-                <td><a href="{{route('tradingWidth')}}"><i class="fa-duotone fa-solid fa-down-from-bracket fa-flip-vertical fa-lg rounded p-3" style="--fa-primary-color: #dc0404; --fa-secondary-color: #dc0404; --fa-secondary-opacity: 1;"></i></a>
-            </tr>
-            <tr>                
-                <td><a href="{{route('tradingAccountDetailes')}}" class="text-primary">158644</a></td>
-            <td><a href="{{route('clientProfile')}}" class="text-primary">mirza@gmail.com</a></td>
-            <td>12.10.2024</td>
-            <td><a href="{{route('offerForm')}}" class="text-primary">standerd</a>  </td>
-            <td>hasnat</td>
-            <td>saimun</td>
-            <td><a href="{{route('tradingDepo')}}"><i class=" fa-duotone fa-solid fa-up-to-bracket fa-flip-both fa-lg rounded p-3" style="--fa-primary-color: #05b9d9; --fa-secondary-color: #05b9d9; --fa-secondary-opacity: 1;"></i></a></td>
-                <td><a href="{{route('tradingWidth')}}"><i class="fa-duotone fa-solid fa-down-from-bracket fa-flip-vertical fa-lg rounded p-3" style="--fa-primary-color: #dc0404; --fa-secondary-color: #dc0404; --fa-secondary-opacity: 1;"></i></a>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
