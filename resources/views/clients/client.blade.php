@@ -52,7 +52,7 @@
   <div class="col-md-12 table-responsive table-responsive-sm">
     <caption>List of users</caption>
 
-    <table class="table table-hover table-sm" id="myTable">
+    <table class="table table-hover table-sm" id="clientsTable">
       <thead class="bg-dark report-white-font">
         <tr>
           <th><input type="search" class="form-control" placeholder="Online"></th>

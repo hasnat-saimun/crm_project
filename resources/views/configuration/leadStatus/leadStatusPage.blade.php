@@ -18,7 +18,7 @@
 @section('body')
 <div class="card">
     <div class="col-md-12 table-responsive table-responsive-sm">
-    <table class="table table-hover table-sm ">
+    <table class="table table-hover table-sm" id="leadStatusTable">
         <caption>List of users</caption>
         <form method="POST" class="form align-items-center" action="">
         <thead class="bg-dark report-white-font">

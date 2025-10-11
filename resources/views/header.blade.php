@@ -38,6 +38,12 @@
         <!-- DataTables CSS -->
         <!-- DataTables (Bootstrap 4) CSS -->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
+        <!-- DataTables Buttons CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap4.min.css">
+        <!-- DataTables Responsive CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap4.min.css">
+        <!-- DataTables ColVis CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.7.0/css/colReorder.bootstrap4.min.css">
 
 
         <!-- font owsam -->
@@ -48,6 +54,174 @@
             }
             .modal-backdrop {
                 z-index: 100;
+            }
+            
+            /* Column Visibility Modal Styling */
+            .column-toggle-container {
+                max-height: 400px;
+                overflow-y: auto;
+            }
+            
+            .form-check {
+                padding: 8px 12px;
+                border: 1px solid #e9ecef;
+                border-radius: 4px;
+                background: #f8f9fa;
+                transition: all 0.2s ease;
+            }
+            
+            .form-check:hover {
+                background: #e9ecef;
+                border-color: #007bff;
+            }
+            
+            .form-check-input:checked ~ .form-check-label {
+                color: #007bff;
+                font-weight: 500;
+            }
+            
+            .btn-group-column-controls {
+                border-bottom: 1px solid #dee2e6;
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+            }
+            
+            /* DataTables Column Visibility Button Styling */
+            .dt-button.buttons-colvis {
+                background: #6c757d;
+                border-color: #6c757d;
+                color: white;
+            }
+            
+            .dt-button.buttons-colvis:hover {
+                background: #5a6268;
+                border-color: #5a6268;
+                color: white;
+            }
+            
+            /* Enhanced Responsive Table Styling */
+            .table-responsive-enhanced {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                border: 1px solid #dee2e6;
+                border-radius: 0.375rem;
+            }
+            
+            .dt-buttons {
+                margin-bottom: 15px;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .dt-button {
+                margin-right: 5px !important;
+                margin-bottom: 5px !important;
+                border-radius: 4px !important;
+                font-size: 12px !important;
+                padding: 6px 12px !important;
+            }
+            
+            .dt-button:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            
+            /* Export dropdown styling */
+            .dt-button-collection {
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                border: none;
+            }
+            
+            .dt-button-collection .dt-button {
+                width: 100%;
+                text-align: left;
+                border: none;
+                border-radius: 0;
+                margin: 0;
+            }
+            
+            .dt-button-collection .dt-button:hover {
+                background-color: #f8f9fa;
+                transform: none;
+                box-shadow: none;
+            }
+            
+            /* Responsive table controls */
+            .dataTables_wrapper .dataTables_length,
+            .dataTables_wrapper .dataTables_filter,
+            .dataTables_wrapper .dataTables_info,
+            .dataTables_wrapper .dataTables_paginate {
+                margin: 10px 0;
+            }
+            
+            @media (max-width: 768px) {
+                .dt-buttons {
+                    text-align: center;
+                    width: 100%;
+                }
+                
+                .dt-button {
+                    margin: 2px !important;
+                    font-size: 11px !important;
+                    padding: 4px 8px !important;
+                }
+                
+                .dataTables_wrapper .dataTables_length,
+                .dataTables_wrapper .dataTables_filter {
+                    text-align: center;
+                    float: none;
+                    margin: 5px 0;
+                }
+                
+                .dataTables_wrapper .dataTables_info,
+                .dataTables_wrapper .dataTables_paginate {
+                    text-align: center;
+                    float: none;
+                }
+            }
+            
+            /* Enhanced responsive details */
+            .dtr-details {
+                background-color: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-radius: 4px;
+                padding: 10px;
+            }
+            
+            .dtr-details ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            
+            .dtr-details li {
+                border-bottom: 1px solid #dee2e6;
+                padding: 8px 0;
+            }
+            
+            .dtr-details li:last-child {
+                border-bottom: none;
+            }
+            
+            .dtr-title {
+                font-weight: bold;
+                color: #495057;
+                min-width: 120px;
+                display: inline-block;
+            }
+            
+            .dtr-data {
+                color: #6c757d;
+            }
+            
+            /* Processing indicator */
+            .dataTables_processing {
+                background: rgba(255,255,255,0.9);
+                color: #007bff;
+                font-weight: bold;
+                border-radius: 4px;
+                border: 1px solid #007bff;
             }
 
         </style>
@@ -506,6 +680,18 @@
         <!-- DataTables core + Bootstrap 4 integration -->
         <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
+        <!-- DataTables Buttons -->
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
+        <!-- DataTables Responsive -->
+        <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
 
 
         <script src="{{asset('public/admindek-html/')}}/files/assets/pages/waves/js/waves.min.js"></script>
@@ -526,24 +712,344 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script>
-  $(function () {
-    var table = $('#myTable').DataTable({
-      paging: true,
-      searching: true,
-      ordering: true,
-      lengthMenu: [5, 10, 25, 50],
-      language: { search: "Filter records:" }
+$(document).ready(function() {
+    // Common DataTables configuration
+    var dtConfig = {
+        paging: true,
+        searching: true,
+        ordering: true,
+        info: true,
+        lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        pageLength: 25,
+        responsive: {
+            details: {
+                type: 'column',
+                target: 'tr'
+            },
+            breakpoints: [
+                { name: 'bigdesktop', width: Infinity },
+                { name: 'meddesktop', width: 1480 },
+                { name: 'desktop', width: 1024 },
+                { name: 'tablet', width: 768 },
+                { name: 'fablet', width: 480 },
+                { name: 'phone', width: 320 }
+            ]
+        },
+        autoWidth: false,
+        scrollX: true,
+        scrollCollapse: true,
+        processing: true,
+        stateSave: true,
+        language: {
+            search: "Search:",
+            lengthMenu: "Show _MENU_ entries",
+            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+            infoEmpty: "No entries available",
+            infoFiltered: "(filtered from _MAX_ total entries)",
+            zeroRecords: "No matching records found",
+            emptyTable: "No data available in table",
+            processing: "Processing...",
+            paginate: {
+                first: "First",
+                last: "Last",
+                next: "Next",
+                previous: "Previous"
+            }
+        },
+        dom: '<"row"<"col-sm-12 col-md-4"l><"col-sm-12 col-md-4 text-center"B><"col-sm-12 col-md-4"f>>' +
+             '<"row"<"col-sm-12"tr>>' +
+             '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        buttons: {
+            dom: {
+                button: {
+                    className: 'btn btn-sm'
+                },
+                collection: {
+                    className: 'btn-group'
+                },
+                container: {
+                    className: 'dt-buttons btn-group flex-wrap'
+                }
+            },
+            buttons: [
+                {
+                    extend: 'collection',
+                    text: '<i class="fa fa-download"></i> Export',
+                    className: 'btn btn-sm btn-primary dropdown-toggle',
+                    buttons: [
+                        {
+                            extend: 'copy',
+                            text: '<i class="fa fa-copy"></i> Copy to Clipboard',
+                            className: 'btn btn-sm btn-info',
+                            exportOptions: {
+                                columns: ':visible'
+                            }
+                        },
+                        {
+                            extend: 'csv',
+                            text: '<i class="fa fa-file-csv"></i> Export CSV',
+                            className: 'btn btn-sm btn-success',
+                            filename: function() {
+                                return 'leads_export_' + new Date().getFullYear() + '-' + 
+                                       (new Date().getMonth() + 1) + '-' + new Date().getDate();
+                            },
+                            exportOptions: {
+                                columns: ':visible'
+                            }
+                        },
+                        {
+                            extend: 'excel',
+                            text: '<i class="fa fa-file-excel"></i> Export Excel',
+                            className: 'btn btn-sm btn-success',
+                            filename: function() {
+                                return 'leads_export_' + new Date().getFullYear() + '-' + 
+                                       (new Date().getMonth() + 1) + '-' + new Date().getDate();
+                            },
+                            exportOptions: {
+                                columns: ':visible'
+                            },
+                            customize: function(xlsx) {
+                                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                                // Add custom styling for Excel export
+                                $('row c[r^="A"]', sheet).attr('s', '7');
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            text: '<i class="fa fa-file-pdf"></i> Export PDF',
+                            className: 'btn btn-sm btn-danger',
+                            filename: function() {
+                                return 'leads_export_' + new Date().getFullYear() + '-' + 
+                                       (new Date().getMonth() + 1) + '-' + new Date().getDate();
+                            },
+                            exportOptions: {
+                                columns: ':visible'
+                            },
+                            customize: function(doc) {
+                                doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                                doc.defaultStyle.fontSize = 8;
+                                doc.styles.tableHeader.fontSize = 9;
+                                doc.styles.tableHeader.fillColor = '#007bff';
+                                doc.pageOrientation = 'landscape';
+                                doc.pageSize = 'A4';
+                            }
+                        }
+                    ]
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i> Print',
+                    className: 'btn btn-sm btn-warning',
+                    exportOptions: {
+                        columns: ':visible'
+                    },
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt')
+                            .prepend('<div><h3>Leads Report - Generated on ' + new Date().toLocaleDateString() + '</h3></div>');
+                        
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', '9pt');
+                    }
+                },
+                {
+                    extend: 'colvis',
+                    text: '<i class="fa fa-columns"></i> Columns',
+                    className: 'btn btn-sm btn-secondary',
+                    columnText: function(dt, idx, title) {
+                        return (idx + 1) + ': ' + title;
+                    }
+                },
+                {
+                    text: '<i class="fa fa-refresh"></i> Refresh',
+                    className: 'btn btn-sm btn-info',
+                    action: function(e, dt, node, config) {
+                        dt.ajax.reload();
+                    }
+                }
+            ]
+        }
+    };
+
+    // Initialize DataTables for specific tables
+    var tables = {
+        // Main data tables
+        '#leadsTable': dtConfig,
+        '#clientsTable': dtConfig,
+        '#tradingTable': dtConfig,
+        '#depositsTable': dtConfig,
+        '#withdrawalsTable': dtConfig,
+        
+        // Configuration tables
+        '#rolesTable': dtConfig,
+        '#offersTable': dtConfig,
+        '#operationsTable': dtConfig,
+        '#paymentGatewayTable': dtConfig,
+        '#leadStatusTable': dtConfig,
+        '#poolManagementTable': dtConfig,
+        '#bonusTable': dtConfig,
+        
+        // Action tables
+        '#accountRemovalTable': dtConfig,
+        '#tradingAccountTable': dtConfig,
+        '#moneyManagerTable': dtConfig,
+        '#mailingTable': dtConfig,
+        
+        // Legacy table
+        '#myTable': dtConfig
+    };
+
+    // Initialize all tables
+    $.each(tables, function(selector, config) {
+        if ($(selector).length) {
+            var table = $(selector).DataTable(config);
+            
+            // Per-column search functionality
+            table.columns().every(function(idx) {
+                var col = this;
+                $('thead th:eq(' + idx + ') input, thead td:eq(' + idx + ') input')
+                    .on('keyup change clear', function() {
+                        if (col.search() !== this.value) {
+                            col.search(this.value).draw();
+                        }
+                    })
+                    .on('click', function(e) {
+                        e.stopPropagation();
+                    });
+            });
+        }
     });
 
-    // Per-column search
-    table.columns().every(function (idx) {
-      var col = this;
-      $('thead th:eq(' + idx + ') input')
-        .on('keyup change clear', function () {
-          col.search(this.value).draw();
+    // Global search enhancement
+    $('.dataTables_filter input').attr('placeholder', 'Search all columns...');
+    
+    // Column Visibility Functionality
+    window.initializeColumnVisibility = function(tableId) {
+        var table = $(tableId).DataTable();
+        var modal = $('#columnVisibilityModal');
+        var togglesContainer = $('#columnToggles');
+        
+        // Generate column toggles
+        function generateColumnToggles() {
+            togglesContainer.empty();
+            table.columns().every(function(index) {
+                var column = this;
+                var header = $(column.header());
+                var columnName = header.text().trim() || header.find('span').first().text().trim() || 'Column ' + (index + 1);
+                
+                // Skip the first column (checkbox) from being toggled
+                if (index === 0) return;
+                
+                var isVisible = column.visible();
+                var toggleHtml = `
+                    <div class="col-md-4 col-sm-6 mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input column-toggle" type="checkbox" 
+                                   data-column="${index}" ${isVisible ? 'checked' : ''} 
+                                   id="col_${index}">
+                            <label class="form-check-label" for="col_${index}">
+                                ${columnName}
+                            </label>
+                        </div>
+                    </div>
+                `;
+                togglesContainer.append(toggleHtml);
+            });
+        }
+        
+        // Show All Columns
+        $('#showAllColumns').on('click', function() {
+            $('.column-toggle').prop('checked', true);
+        });
+        
+        // Hide All Columns  
+        $('#hideAllColumns').on('click', function() {
+            $('.column-toggle').prop('checked', false);
+        });
+        
+        // Reset to Default
+        $('#resetColumns').on('click', function() {
+            // Reset to default visibility (show first 8 columns, hide the rest)
+            $('.column-toggle').each(function(index) {
+                $(this).prop('checked', index < 7);
+            });
+        });
+        
+        // Apply Column Settings
+        $('#applyColumnSettings').on('click', function() {
+            $('.column-toggle').each(function() {
+                var columnIndex = $(this).data('column');
+                var isChecked = $(this).is(':checked');
+                table.column(columnIndex).visible(isChecked);
+            });
+            modal.modal('hide');
+            
+            // Save settings to localStorage
+            var visibilitySettings = {};
+            $('.column-toggle').each(function() {
+                visibilitySettings[$(this).data('column')] = $(this).is(':checked');
+            });
+            localStorage.setItem(tableId + '_columnVisibility', JSON.stringify(visibilitySettings));
+        });
+        
+        // Load saved settings
+        function loadColumnSettings() {
+            var savedSettings = localStorage.getItem(tableId + '_columnVisibility');
+            if (savedSettings) {
+                var settings = JSON.parse(savedSettings);
+                Object.keys(settings).forEach(function(columnIndex) {
+                    table.column(parseInt(columnIndex)).visible(settings[columnIndex]);
+                });
+            }
+        }
+        
+        // Initialize when modal is shown
+        modal.on('show.bs.modal', function() {
+            generateColumnToggles();
+        });
+        
+        // Load saved settings on initialization
+        loadColumnSettings();
+    };
+    
+    // Initialize column visibility for leads table
+    if ($('#leadsTable').length) {
+        setTimeout(function() {
+            initializeColumnVisibility('#leadsTable');
+            
+            // Update record count
+            var table = $('#leadsTable').DataTable();
+            $('#totalRecords').text(table.data().length + ' records');
+            
+            // Update count on search/filter
+            table.on('search.dt draw.dt', function() {
+                var info = table.page.info();
+                $('#totalRecords').text(info.recordsDisplay + ' of ' + info.recordsTotal + ' records');
+            });
+        }, 100);
+    }
+    
+    // Enhanced mobile menu for DataTables
+    $(window).on('resize', function() {
+        $('.dataTable').each(function() {
+            if ($(this).hasClass('dataTable')) {
+                $(this).DataTable().columns.adjust().responsive.recalc();
+            }
         });
     });
-  });
+    
+    // Add loading indicator
+    $('.dataTables_processing').html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+    
+    // Custom styling for buttons
+    setTimeout(function() {
+        $('.dt-buttons').addClass('mb-3');
+        $('.dataTables_wrapper').addClass('mt-3');
+        $('.dataTables_filter input').addClass('form-control-sm');
+        $('.dataTables_length select').addClass('form-control-sm');
+    }, 200);
+});
 </script>
     </body>
 </html>

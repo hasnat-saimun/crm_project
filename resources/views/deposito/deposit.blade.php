@@ -43,9 +43,9 @@
 @endsection @section('body')
 <div class="card">
     <div class="col-md-12 table-responsive table-responsive-sm">
-        <table class="table table-hover table-sm">
+        <table class="table table-hover table-sm" id="depositsTable">
             <caption>
-                List of users
+                List of deposits
             </caption>
             <form method="POST" class="form align-items-center" action="">
                 <thead class="bg-dark report-white-font">

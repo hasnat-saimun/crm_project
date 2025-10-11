@@ -42,7 +42,7 @@ Route::get('/sales_dashbord/tasks',[
 
 //**client Dashbord str */
 // client profile str
-Route::get('/sales_dashbord/client/profile',[
+Route::get('/sales_dashbord/client/profile/{email}',[
     'uses'  => 'salesControl@clientProfile',
     'as'    => 'clientProfile'
 ]);
