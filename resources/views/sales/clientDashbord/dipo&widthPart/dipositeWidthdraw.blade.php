@@ -52,7 +52,7 @@
                     <tbody>
                         <tr>
                             <td>10/10/2024</td>
-                            <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
+                            <td><a href="{{route('clientProfile', ['email' => 'hasnat@gmail.com'])}}" class="text-primary">hasnat@gmail.com</a></td>
                             <td><a href="{{route('depositRequest')}}" class="text-primary">158644 </a></td>
                             <td>standerd</td>
                             <td>USd</td>
@@ -120,7 +120,7 @@
                     <tbody>
                         <tr>
                             <td>10/10/2024</td>
-                            <td><a href="{{route('clientProfile')}}" class="text-primary">hasnat@gmail.com</a></td>
+                            <td><a href="{{route('clientProfile', ['email' => 'hasnat@gmail.com'])}}" class="text-primary">hasnat@gmail.com</a></td>
                             <td><a href="{{route('widthdrawRequest')}}" class="text-primary" >158644 </a></td>
                             <td>standerd</td>
                             <td>USd</td>
