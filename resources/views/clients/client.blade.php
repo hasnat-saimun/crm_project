@@ -86,7 +86,7 @@
           <tr>
             <td>Active</td>
             <td>
-              <a href="{{ route('clientProfile') }}" class="text-primary">
+              <a href="{{ route('clientProfile',['email' => $client['email']]) }}" class="text-primary">
                 {{ $client['email'] ?? 'N/A' }}
               </a>
             </td>

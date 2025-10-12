@@ -174,7 +174,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <a href="{{route('clientProfile')}}" class=""><h6 class="text-primary">Md Abu Yousuf Successful deposit 20</h6></a>
+                                        <a href="#" class=""><h6 class="text-primary">Md Abu Yousuf Successful deposit 20</h6></a>
                                     </td>
                                     <td>04.09.2024 13:38:</td>
                                     <td>Successful depo</td>
