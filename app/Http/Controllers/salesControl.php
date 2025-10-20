@@ -874,13 +874,13 @@ class salesControl extends Controller
             }
         }
         
-        // If still no value found, provide realistic demo values based on transaction history
+        // If still no value found, provide calculated values based on transaction history
         if ($value === null || $value == 0) {
             $totalDeposits = $this->calculateTotalTransactions($depositHistory, $email, 'deposit');
             $totalWithdrawals = $this->calculateTotalTransactions($withdrawalHistory, $email, 'withdrawal');
             $netBalance = $totalDeposits - $totalWithdrawals;
             
-            \Log::info("Using calculated demo values", [
+            \Log::info("Using calculated values", [
                 'email' => $email,
                 'field' => $field,
                 'totalDeposits' => $totalDeposits,
@@ -891,10 +891,9 @@ class salesControl extends Controller
             switch ($field) {
                 case 'balance':
                 case 'equity':
-                    $value = $netBalance > 0 ? $netBalance : 150.00;
-                    break;
                 case 'freeMargin':
-                    $value = $netBalance > 0 ? $netBalance : 150.00;
+                    // Show actual calculated balance or 0.00 if no transactions
+                    $value = $netBalance >= 0 ? $netBalance : 0.00;
                     break;
                 case 'credit':
                 case 'profit':

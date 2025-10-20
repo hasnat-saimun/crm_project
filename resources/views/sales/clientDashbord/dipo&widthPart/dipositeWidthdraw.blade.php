@@ -36,7 +36,7 @@
     </div>
     <div class="row">
             <div class="col-md-12 table-responsive table-responsive-sm">
-                <table class="table table-hover table-sm" id="depositsTable">
+                <table class="table table-hover table-sm" id="clientDepositsTable">
                     <caption>
                         List of completed deposits for selected client
                     </caption>
@@ -80,7 +80,7 @@
                             </tr>
                             @endforeach
                         @else
-                            <tr>
+                            <tr data-empty-state="true">
                                 <td colspan="10" class="text-center py-4">
                                     <div class="d-flex flex-column align-items-center">
                                         <i class="fa-duotone fa-solid fa-money-bill-transfer fa-3x text-muted mb-3"></i>
@@ -138,7 +138,7 @@
     </div>
     <div class="row">
             <div class="col-md-12 table-responsive table-responsive-sm">
-                <table class="table table-hover table-sm" id="withdrawalsTable">
+                <table class="table table-hover table-sm" id="clientWithdrawalsTable">
                     <caption>
                         List of completed withdrawals for selected client
                     </caption>
@@ -182,7 +182,7 @@
                             </tr>
                             @endforeach
                         @else
-                            <tr>
+                            <tr data-empty-state="true">
                                 <td colspan="10" class="text-center py-4">
                                     <div class="d-flex flex-column align-items-center">
                                         <i class="fa-duotone fa-solid fa-money-bill-trend-down fa-3x text-muted mb-3"></i>
@@ -205,58 +205,66 @@
 
 <script>
 $(document).ready(function() {
-    // Initialize DataTables for Deposits table
-    if ($('#depositsTable').length) {
-        $('#depositsTable').DataTable({
-            responsive: true,
-            pageLength: 10,
-            lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
-            order: [[0, 'desc']], // Order by created date descending
-            language: {
-                search: "Search deposits:",
-                lengthMenu: "Show _MENU_ deposits per page",
-                info: "Showing _START_ to _END_ of _TOTAL_ deposits",
-                infoEmpty: "No deposits available",
-                infoFiltered: "(filtered from _MAX_ total deposits)"
-            },
-            columnDefs: [
-                { 
-                    targets: [3, 4, 8], // Amount, Net Amount, Fees columns
-                    className: 'text-end'
+    // Initialize DataTables for Client Deposits table
+    if ($('#clientDepositsTable').length) {
+        try {
+            $('#clientDepositsTable').DataTable({
+                responsive: true,
+                pageLength: 10,
+                lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                order: [[0, 'desc']], // Order by created date descending
+                language: {
+                    search: "Search deposits:",
+                    lengthMenu: "Show _MENU_ deposits per page",
+                    info: "Showing _START_ to _END_ of _TOTAL_ deposits",
+                    infoEmpty: "No deposits available",
+                    infoFiltered: "(filtered from _MAX_ total deposits)"
                 },
-                { 
-                    targets: [6], // Status column
-                    className: 'text-center'
-                }
-            ]
-        });
+                columnDefs: [
+                    { 
+                        targets: [3, 4, 8], // Amount, Net Amount, Fees columns
+                        className: 'text-end'
+                    },
+                    { 
+                        targets: [6], // Status column
+                        className: 'text-center'
+                    }
+                ]
+            });
+        } catch (error) {
+            console.error('ClientDepositsTable: Error initializing DataTables:', error);
+        }
     }
     
-    // Initialize DataTables for Withdrawals table
-    if ($('#withdrawalsTable').length) {
-        $('#withdrawalsTable').DataTable({
-            responsive: true,
-            pageLength: 10,
-            lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
-            order: [[0, 'desc']], // Order by created date descending
-            language: {
-                search: "Search withdrawals:",
-                lengthMenu: "Show _MENU_ withdrawals per page",
-                info: "Showing _START_ to _END_ of _TOTAL_ withdrawals",
-                infoEmpty: "No withdrawals available",
-                infoFiltered: "(filtered from _MAX_ total withdrawals)"
-            },
-            columnDefs: [
-                { 
-                    targets: [3, 4, 8], // Amount, Net Amount, Fees columns
-                    className: 'text-end'
+    // Initialize DataTables for Client Withdrawals table
+    if ($('#clientWithdrawalsTable').length) {
+        try {
+            $('#clientWithdrawalsTable').DataTable({
+                responsive: true,
+                pageLength: 10,
+                lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                order: [[0, 'desc']], // Order by created date descending
+                language: {
+                    search: "Search withdrawals:",
+                    lengthMenu: "Show _MENU_ withdrawals per page",
+                    info: "Showing _START_ to _END_ of _TOTAL_ withdrawals",
+                    infoEmpty: "No withdrawals available",
+                    infoFiltered: "(filtered from _MAX_ total withdrawals)"
                 },
-                { 
-                    targets: [6], // Status column
-                    className: 'text-center'
-                }
-            ]
-        });
+                columnDefs: [
+                    { 
+                        targets: [3, 4, 8], // Amount, Net Amount, Fees columns
+                        className: 'text-end'
+                    },
+                    { 
+                        targets: [6], // Status column
+                        className: 'text-center'
+                    }
+                ]
+            });
+        } catch (error) {
+            console.error('ClientWithdrawalsTable: Error initializing DataTables:', error);
+        }
     }
 });
 </script>

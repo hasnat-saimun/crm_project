@@ -878,8 +878,8 @@ $(document).ready(function() {
         '#leadsTable': dtConfig,
         '#clientsTable': dtConfig,
         '#tradingTable': dtConfig,
-        '#depositsTable': dtConfig,
-        '#withdrawalsTable': dtConfig,
+        '#depositsTable': dtConfig,  // Global deposits table (not client-specific)
+        '#withdrawalsTable': dtConfig,  // Global withdrawals table (not client-specific)
         
         // Configuration tables
         '#rolesTable': dtConfig,
