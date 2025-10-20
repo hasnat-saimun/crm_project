@@ -60,7 +60,6 @@
     }
 </style>
 
-
 <div class="card">
     <form method="POST" class="form" action="">
         <div class="row">
