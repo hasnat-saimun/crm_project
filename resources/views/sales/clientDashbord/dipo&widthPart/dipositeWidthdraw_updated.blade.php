@@ -5,10 +5,6 @@
             <div class="row">
                 <div class="col-md-4">
                     <h4 class="fw-bolder">Deposits</h4>
-                    <small class="text-muted">
-                        <i class="fa fa-filter me-1"></i>
-                        Showing completed deposits only
-                    </small>
                 </div>
                 <div class="col-md-1">
                     <a href=""><i class="fa-regular fa-arrows-rotate-reverse fa-sm bg-info rounded p-3"></i></a>
@@ -38,7 +34,7 @@
             <div class="col-md-12 table-responsive table-responsive-sm">
                 <table class="table table-hover table-sm" id="depositsTable">
                     <caption>
-                        List of completed deposits for selected client
+                        List of deposits
                     </caption>
                     <thead class="bg-dark report-white-font">
                         <tr>
@@ -84,8 +80,8 @@
                                 <td colspan="10" class="text-center py-4">
                                     <div class="d-flex flex-column align-items-center">
                                         <i class="fa-duotone fa-solid fa-money-bill-transfer fa-3x text-muted mb-3"></i>
-                                        <h5 class="text-muted">No Completed Deposits Found</h5>
-                                        <p class="text-muted">This client has no completed deposits yet.</p>
+                                        <h5 class="text-muted">No Deposits Found</h5>
+                                        <p class="text-muted">This client hasn't made any deposits yet.</p>
                                         <a href="{{route('addDepositAcc')}}" class="btn btn-success">
                                             <i class="fa-duotone fa-solid fa-plus me-2"></i>
                                             Add Deposit
@@ -107,10 +103,6 @@
             <div class="row">
                 <div class="col-md-6">
                     <h4 class="fw-bolder">Withdrawals</h4>
-                    <small class="text-muted">
-                        <i class="fa fa-filter me-1"></i>
-                        Showing completed withdrawals only
-                    </small>
                 </div>
                 <div class="col-md-1">
                     <a href=""><i class="fa-regular fa-arrows-rotate-reverse fa-sm bg-info rounded p-3"></i></a>
@@ -140,7 +132,7 @@
             <div class="col-md-12 table-responsive table-responsive-sm">
                 <table class="table table-hover table-sm" id="withdrawalsTable">
                     <caption>
-                        List of completed withdrawals for selected client
+                        List of withdrawals
                     </caption>
                     <thead class="bg-dark report-white-font">
                         <tr>
@@ -186,8 +178,8 @@
                                 <td colspan="10" class="text-center py-4">
                                     <div class="d-flex flex-column align-items-center">
                                         <i class="fa-duotone fa-solid fa-money-bill-trend-down fa-3x text-muted mb-3"></i>
-                                        <h5 class="text-muted">No Completed Withdrawals Found</h5>
-                                        <p class="text-muted">This client has no completed withdrawals yet.</p>
+                                        <h5 class="text-muted">No Withdrawals Found</h5>
+                                        <p class="text-muted">This client hasn't made any withdrawals yet.</p>
                                         <a href="{{route('addWidthdrawAcc')}}" class="btn btn-warning">
                                             <i class="fa-duotone fa-solid fa-minus me-2"></i>
                                             Add Withdrawal
