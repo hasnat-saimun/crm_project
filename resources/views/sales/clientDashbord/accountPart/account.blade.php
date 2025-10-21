@@ -27,8 +27,17 @@
     </div>
 </div>
 
+@php
+    // Get accounts from multiple possible data structures
+    $accounts = $clientData['accountConfiguration']['tradingAccounts'] ?? 
+                $clientData['tradingAccounts'] ?? 
+                $clientData['accounts'] ?? 
+                $clientData['content'] ?? 
+                [];
+@endphp
+
 <!-- Trading Accounts Summary -->
-@if(isset($clientData['accountConfiguration']['tradingAccounts']) && is_array($clientData['accountConfiguration']['tradingAccounts']) && count($clientData['accountConfiguration']['tradingAccounts']) > 0)
+@if(count($accounts) > 0)
 <div class="row mb-4">
     @php
         $totalBalance = 0;
@@ -37,12 +46,19 @@
         $realAccounts = 0;
         $demoAccounts = 0;
         
-        foreach($clientData['accountConfiguration']['tradingAccounts'] as $account) {
-            $totalBalance += $account['balance'] ?? 0;
-            $totalEquity += $account['equity'] ?? 0;
-            $totalProfit += $account['profit'] ?? 0;
+        foreach($accounts as $account) {
+            // Get financial data - check nested structure first, then flat structure
+            $balance = $account['financeInfo']['balance'] ?? $account['balance'] ?? 0;
+            $equity = $account['financeInfo']['equity'] ?? $account['equity'] ?? 0;
+            $profit = $account['financeInfo']['profit'] ?? $account['financeInfo']['netProfit'] ?? $account['profit'] ?? 0;
             
-            if(($account['accountType'] ?? '') === 'REAL') {
+            $totalBalance += floatval($balance);
+            $totalEquity += floatval($equity);
+            $totalProfit += floatval($profit);
+            
+            $accountType = strtoupper($account['accountType'] ?? 'DEMO');
+            
+            if($accountType === 'REAL') {
                 $realAccounts++;
             } else {
                 $demoAccounts++;
@@ -143,25 +159,41 @@
         </thead>
         
         <tbody>
-            @if(isset($clientData['accountConfiguration']['tradingAccounts']) && is_array($clientData['accountConfiguration']['tradingAccounts']) && count($clientData['accountConfiguration']['tradingAccounts']) > 0)
-                @foreach($clientData['accountConfiguration']['tradingAccounts'] as $account)
+            @if(count($accounts) > 0)
+                @foreach($accounts as $account)
+                @php
+                    // Simple, direct data extraction
+                    $accountId = $account['login'] ?? $account['accountId'] ?? 'N/A';
+                    $accountType = strtoupper($account['accountType'] ?? 'DEMO');
+                    $status = $account['access'] ?? $account['status'] ?? 'Active';
+                    $offer = $account['group'] ?? $account['offer'] ?? 'Standard';
+                    
+                    // Financial data - check nested first, then flat
+                    $balance = $account['financeInfo']['balance'] ?? $account['balance'] ?? 0;
+                    $equity = $account['financeInfo']['equity'] ?? $account['equity'] ?? 0;
+                    $freeMargin = $account['financeInfo']['freeMargin'] ?? $account['freeMargin'] ?? 0;
+                    $profit = $account['financeInfo']['profit'] ?? $account['financeInfo']['netProfit'] ?? $account['profit'] ?? 0;
+                    $currency = $account['financeInfo']['currency'] ?? $account['currency'] ?? 'USD';
+                    $leverage = $account['leverage'] ?? 100;
+                    $created = $account['created'];
+                @endphp
                 <tr>
-                    <td><a href="{{route('trandingAccountDetail')}}" class="text-primary fw-bold">{{ $account['accountId'] ?? 'N/A' }}</a></td>
+                    <td><a href="{{route('trandingAccountDetail')}}" class="text-primary fw-bold">{{ $accountId }}</a></td>
                     <td>
-                        <span class="badge {{ $account['accountType'] === 'REAL' ? 'bg-success' : 'bg-info' }}">
-                            {{ $account['accountType'] ?? 'N/A' }}
+                        <span class="badge {{ $accountType === 'REAL' ? 'bg-success' : 'bg-info' }}">
+                            {{ $accountType }}
                         </span>
                     </td>
-                    <td><a href="{{route('offerForm')}}" class="text-primary">{{ $account['offer'] ?? 'Standard' }}</a></td>
-                    <td class="fw-bold text-success">${{ number_format($account['balance'] ?? 0, 2) }}</td>
-                    <td class="fw-bold">${{ number_format($account['equity'] ?? 0, 2) }}</td>
-                    <td>${{ number_format($account['freeMargin'] ?? 0, 2) }}</td>
-                    <td class="{{ ($account['profit'] ?? 0) >= 0 ? 'text-success' : 'text-danger' }} fw-bold">
-                        ${{ number_format($account['profit'] ?? 0, 2) }}
+                    <td><a href="{{route('offerForm')}}" class="text-primary">{{ $offer }}</a></td>
+                    <td class="fw-bold text-success">${{ number_format(floatval($balance), 2) }}</td>
+                    <td class="fw-bold">${{ number_format(floatval($equity), 2) }}</td>
+                    <td>${{ number_format(floatval($freeMargin), 2) }}</td>
+                    <td class="{{ floatval($profit) >= 0 ? 'text-success' : 'text-danger' }} fw-bold">
+                        ${{ number_format(floatval($profit), 2) }}
                     </td>
-                    <td>{{ $account['currency'] ?? 'USD' }}</td>
-                    <td>1:{{ $account['leverage'] ?? 100 }}</td>
-                    <td>{{ isset($account['created']) ? \Carbon\Carbon::parse($account['created'])->format('M d, Y') : 'N/A' }}</td>
+                    <td>{{ $currency }}</td>
+                    <td>1:{{ $leverage }}</td>
+                    <td>{{ $created ? \Carbon\Carbon::parse($created)->format('M d, Y') : 'N/A' }}</td>
                     <td><a href="{{route('addDepositAcc')}}"><i class="fa-duotone fa-solid fa-up-to-bracket fa-flip-both fa-lg rounded p-3" style="--fa-primary-color: #05b9d9; --fa-secondary-color: #05b9d9; --fa-secondary-opacity: 1;" title="Add Deposit"></i></a></td>
                     <td><a href="{{route('addWidthdrawAcc')}}"><i class="fa-duotone fa-solid fa-down-from-bracket fa-flip-vertical fa-lg rounded p-3" style="--fa-primary-color: #dc0404; --fa-secondary-color: #dc0404; --fa-secondary-opacity: 1;" title="Withdraw"></i></a></td>
                 </tr>
