@@ -1,7 +1,25 @@
 @extends('header')  @section('header')
 <div class="col-md-6 mt-4">
     <h3 class="fw-bolder text-uppercase">
-        Client Name
+        @php
+            $firstName = $clientData['personalDetails']['firstname'] ?? '';
+            $lastName = $clientData['personalDetails']['lastname'] ?? '';
+            $email = $clientData['contactDetails']['email'] ?? $email ?? '';
+            
+            if (!empty($firstName) && !empty($lastName)) {
+                echo $firstName . ' ' . $lastName;
+            } elseif (!empty($firstName)) {
+                echo $firstName;
+            } elseif (!empty($lastName)) {
+                echo $lastName;
+            } elseif (!empty($email)) {
+                // Extract name part from email (before @)
+                $emailName = explode('@', $email)[0];
+                echo ucwords(str_replace(['.', '_', '-'], ' ', $emailName));
+            } else {
+                echo 'Client Profile';
+            }
+        @endphp
     </h3>
 </div>
 <div class="col-md-6">

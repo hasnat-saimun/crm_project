@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\leadControl;
 use App\Http\Controllers\configurationControl;
 use App\Http\Controllers\logsControl;
+use App\Http\Controllers\salesControl;
 
 Route::get('/', function () {
     return view('welcome');
@@ -111,6 +112,37 @@ Route::get('/sales_dashbord/client/widthdraw_payment_getway',[
 ]);
 //widthdrawPayment end
 
+//timeline API str
+Route::get('/api/timeline/{email}', [
+    salesControl::class,
+    'getTimelineData'
+])->name('getTimelineData');
+
+Route::get('/api/timeline-test', function() {
+    return response()->json([
+        'success' => true,
+        'message' => 'Timeline API is working',
+        'timestamp' => now()->toISOString()
+    ]);
+})->name('timelineTest');
+//timeline API end
+
+//KYC API str
+Route::get('/api/kyc/{email}', [
+    salesControl::class,
+    'getKycRecords'
+])->name('getKycRecords');
+
+Route::post('/api/kyc/{email}', [
+    salesControl::class,
+    'createKycRequest'
+])->name('createKycRequest');
+
+Route::put('/api/kyc/{id}/status', [
+    salesControl::class,
+    'updateKycStatus'
+])->name('updateKycStatus');
+//KYC API end
 
 //**client Dashbord end */
 //end

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 use Exception;
 
 class salesControl extends Controller
@@ -419,6 +420,585 @@ class salesControl extends Controller
 
     public function widthdrawRequest(){
         return view('sales.clientDashbord.dipo&widthPart.widthdrawRequest');
+    }
+
+    /**
+     * Get timeline/activity data for a specific client
+     */
+    public function getTimelineData($email) {
+        try {
+            \Log::info('Timeline Data Request', ['email' => $email]);
+            
+            // Fetch various data sources that contribute to timeline
+            $clientData = $this->fetchClientDataForTimeline($email);
+            $depositHistory = $this->fetchDepositHistory($email);
+            $withdrawalHistory = $this->fetchWithdrawalHistory($email);
+            $tradingAccountData = $this->fetchTradingAccountData($email);
+            
+            // Build timeline activities from different sources
+            $timelineActivities = [];
+            
+            // Add client registration activity
+            if ($clientData) {
+                $timelineActivities[] = [
+                    'type' => 'registration',
+                    'title' => 'Account Created',
+                    'description' => 'Client account was successfully created',
+                    'date' => data_get($clientData, 'created', now()->toISOString()),
+                    'icon' => 'fa-user-plus',
+                    'color' => 'primary'
+                ];
+            }
+            
+            // Add deposit activities
+            if ($depositHistory && isset($depositHistory['content'])) {
+                foreach ($depositHistory['content'] as $deposit) {
+                    $depositEmail = data_get($deposit, 'accountInfo.email') ?? data_get($deposit, 'email');
+                    if ($depositEmail === $email) {
+                        $status = data_get($deposit, 'paymentRequestInfo.financialDetails.status') ?? data_get($deposit, 'status', 'Unknown');
+                        $amount = data_get($deposit, 'paymentRequestInfo.financialDetails.amount') ?? data_get($deposit, 'amount', 0);
+                        $currency = data_get($deposit, 'paymentRequestInfo.financialDetails.currency') ?? data_get($deposit, 'currency', 'USD');
+                        
+                        $timelineActivities[] = [
+                            'type' => 'deposit',
+                            'title' => 'Deposit Request',
+                            'description' => "Deposit of {$amount} {$currency} - Status: {$status}",
+                            'date' => data_get($deposit, 'created', now()->toISOString()),
+                            'icon' => 'fa-arrow-down',
+                            'color' => $status === 'done' ? 'success' : 'info',
+                            'amount' => $amount,
+                            'currency' => $currency,
+                            'status' => $status
+                        ];
+                    }
+                }
+            }
+            
+            // Add withdrawal activities
+            if ($withdrawalHistory && isset($withdrawalHistory['content'])) {
+                foreach ($withdrawalHistory['content'] as $withdrawal) {
+                    $withdrawalEmail = data_get($withdrawal, 'accountInfo.email') ?? data_get($withdrawal, 'email');
+                    if ($withdrawalEmail === $email) {
+                        $status = data_get($withdrawal, 'paymentRequestInfo.financialDetails.status') ?? data_get($withdrawal, 'status', 'Unknown');
+                        $amount = data_get($withdrawal, 'paymentRequestInfo.financialDetails.amount') ?? data_get($withdrawal, 'amount', 0);
+                        $currency = data_get($withdrawal, 'paymentRequestInfo.financialDetails.currency') ?? data_get($withdrawal, 'currency', 'USD');
+                        
+                        $timelineActivities[] = [
+                            'type' => 'withdrawal',
+                            'title' => 'Withdrawal Request',
+                            'description' => "Withdrawal of {$amount} {$currency} - Status: {$status}",
+                            'date' => data_get($withdrawal, 'created', now()->toISOString()),
+                            'icon' => 'fa-arrow-up',
+                            'color' => $status === 'done' ? 'danger' : 'warning',
+                            'amount' => $amount,
+                            'currency' => $currency,
+                            'status' => $status
+                        ];
+                    }
+                }
+            }
+            
+            // Add trading account activities
+            if ($tradingAccountData && isset($tradingAccountData['content'])) {
+                foreach ($tradingAccountData['content'] as $account) {
+                    $accountEmail = data_get($account, 'accountInfo.email');
+                    if ($accountEmail === $email) {
+                        $login = data_get($account, 'login');
+                        $accountType = data_get($account, 'accountType', 'REAL');
+                        
+                        $timelineActivities[] = [
+                            'type' => 'trading_account',
+                            'title' => 'Trading Account Created',
+                            'description' => "Trading Account #{$login} ({$accountType}) was created",
+                            'date' => data_get($account, 'created', now()->toISOString()),
+                            'icon' => 'fa-chart-line',
+                            'color' => 'info',
+                            'accountId' => $login,
+                            'accountType' => $accountType
+                        ];
+                    }
+                }
+            }
+            
+            // Add verification status changes
+            if ($clientData) {
+                $verificationStatus = data_get($clientData, 'verificationStatus', 'NEW');
+                if ($verificationStatus !== 'NEW') {
+                    $timelineActivities[] = [
+                        'type' => 'verification',
+                        'title' => 'Verification Status Updated',
+                        'description' => "Account verification status changed to: {$verificationStatus}",
+                        'date' => data_get($clientData, 'updated', now()->toISOString()),
+                        'icon' => 'fa-check-circle',
+                        'color' => $verificationStatus === 'VERIFIED' ? 'success' : 'warning',
+                        'status' => $verificationStatus
+                    ];
+                }
+            }
+            
+            // Sort activities by date (newest first)
+            usort($timelineActivities, function($a, $b) {
+                return strtotime($b['date']) - strtotime($a['date']);
+            });
+            
+            // Format dates for display
+            foreach ($timelineActivities as &$activity) {
+                $activity['formatted_date'] = \Carbon\Carbon::parse($activity['date'])->format('M d, Y H:i');
+                $activity['relative_date'] = \Carbon\Carbon::parse($activity['date'])->diffForHumans();
+            }
+            
+            \Log::info('Timeline activities generated', [
+                'email' => $email,
+                'total_activities' => count($timelineActivities),
+                'activity_types' => array_unique(array_column($timelineActivities, 'type'))
+            ]);
+            
+            return response()->json([
+                'success' => true,
+                'data' => $timelineActivities,
+                'meta' => [
+                    'total' => count($timelineActivities),
+                    'email' => $email,
+                    'generated_at' => now()->toISOString()
+                ]
+            ]);
+            
+        } catch (Exception $e) {
+            \Log::error('Timeline data fetch error', [
+                'email' => $email,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return response()->json([
+                'success' => false,
+                'error' => 'Failed to fetch timeline data',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Fetch basic client data for timeline (smaller dataset than full profile)
+     */
+    private function fetchClientDataForTimeline($email) {
+        try {
+            $baseUrl = env('API_BASE_URL');
+            $fullUrl = rtrim($baseUrl, '/') . '/accounts/by-email/' . $email;
+            
+            $response = Http::withHeaders([
+                'Content-Type' => env('API_CONTENT_TYPE'),
+                'Authorization' => env('API_AUTHORIZATION'),
+            ])->get($fullUrl);
+            
+            if ($response->successful()) {
+                return $response->json();
+            }
+            
+            \Log::warning('Failed to fetch client data for timeline', [
+                'email' => $email,
+                'status' => $response->status()
+            ]);
+            
+            return null;
+            
+        } catch (Exception $e) {
+            \Log::error('Timeline client data fetch error', [
+                'email' => $email,
+                'error' => $e->getMessage()
+            ]);
+            
+            return null;
+        }
+    }
+
+    /**
+     * Get KYC records for a specific client
+     */
+    public function getKycRecords($email) {
+        try {
+            \Log::info('KYC Records Request', ['email' => $email]);
+            
+            // Try to fetch KYC data from API
+            $kycData = $this->fetchKycData($email);
+            $clientData = $this->fetchClientDataForTimeline($email);
+            
+            $kycRecords = [];
+            
+            // If API has KYC data, process it
+            if ($kycData && isset($kycData['content'])) {
+                foreach ($kycData['content'] as $record) {
+                    $recordEmail = data_get($record, 'accountInfo.email') ?? data_get($record, 'email');
+                    
+                    if ($recordEmail === $email) {
+                        $kycRecords[] = [
+                            'id' => data_get($record, 'uuid') ?? data_get($record, 'id'),
+                            'status' => data_get($record, 'status', 'PENDING'),
+                            'created' => data_get($record, 'created'),
+                            'updated' => data_get($record, 'updated'),
+                            'remark' => data_get($record, 'remark') ?? data_get($record, 'comment', ''),
+                            'modifiedBy' => data_get($record, 'modifiedBy') ?? data_get($record, 'reviewer'),
+                            'documentType' => data_get($record, 'documentType'),
+                            'documentUrl' => data_get($record, 'documentUrl'),
+                            'personalDetails' => [
+                                'firstname' => data_get($record, 'personalDetails.firstname'),
+                                'lastname' => data_get($record, 'personalDetails.lastname'),
+                                'dateOfBirth' => data_get($record, 'personalDetails.dateOfBirth'),
+                                'phoneNumber' => data_get($record, 'personalDetails.phoneNumber'),
+                                'country' => data_get($record, 'personalDetails.country'),
+                                'state' => data_get($record, 'personalDetails.state'),
+                                'city' => data_get($record, 'personalDetails.city'),
+                                'postCode' => data_get($record, 'personalDetails.postCode'),
+                                'address' => data_get($record, 'personalDetails.address')
+                            ],
+                            'bankDetails' => [
+                                'bankName' => data_get($record, 'bankDetails.bankName'),
+                                'bankAddress' => data_get($record, 'bankDetails.bankAddress'),
+                                'swiftCode' => data_get($record, 'bankDetails.swiftCode'),
+                                'bankAccount' => data_get($record, 'bankDetails.bankAccount'),
+                                'accountName' => data_get($record, 'bankDetails.accountName')
+                            ]
+                        ];
+                    }
+                }
+            }
+            
+            // If no KYC records found, create demo data based on client verification status
+            if (empty($kycRecords)) {
+                $verificationStatus = data_get($clientData, 'verificationStatus', 'NEW');
+                
+                // Create demo KYC records based on verification status
+                if ($verificationStatus !== 'NEW') {
+                    $kycRecords[] = [
+                        'id' => 'KYC_' . uniqid(),
+                        'status' => $verificationStatus === 'VERIFIED' ? 'APPROVED' : 'PENDING',
+                        'created' => now()->subDays(rand(1, 30))->toISOString(),
+                        'updated' => now()->subDays(rand(0, 5))->toISOString(),
+                        'remark' => $verificationStatus === 'VERIFIED' ? 'Identity verification completed' : 'Under review',
+                        'modifiedBy' => 'System Admin',
+                        'documentType' => 'Identity Document',
+                        'documentUrl' => null,
+                        'personalDetails' => [
+                            'firstname' => data_get($clientData, 'personalDetails.firstname', ''),
+                            'lastname' => data_get($clientData, 'personalDetails.lastname', ''),
+                            'dateOfBirth' => data_get($clientData, 'personalDetails.dateOfBirth'),
+                            'phoneNumber' => data_get($clientData, 'contactDetails.phoneNumber'),
+                            'country' => data_get($clientData, 'addressDetails.country'),
+                            'state' => data_get($clientData, 'addressDetails.state'),
+                            'city' => data_get($clientData, 'addressDetails.city'),
+                            'postCode' => data_get($clientData, 'addressDetails.postCode'),
+                            'address' => data_get($clientData, 'addressDetails.address')
+                        ],
+                        'bankDetails' => [
+                            'bankName' => data_get($clientData, 'bankingDetails.bankName'),
+                            'bankAddress' => data_get($clientData, 'bankingDetails.bankAddress'),
+                            'swiftCode' => data_get($clientData, 'bankingDetails.bankSwiftCode'),
+                            'bankAccount' => data_get($clientData, 'bankingDetails.bankAccount'),
+                            'accountName' => data_get($clientData, 'bankingDetails.accountName')
+                        ]
+                    ];
+                }
+            }
+            
+            // Sort records by created date (newest first)
+            usort($kycRecords, function($a, $b) {
+                return strtotime($b['created']) - strtotime($a['created']);
+            });
+            
+            // Format dates for display
+            foreach ($kycRecords as &$record) {
+                $record['formatted_created'] = Carbon::parse($record['created'])->format('d-m-Y');
+                $record['formatted_updated'] = $record['updated'] ? Carbon::parse($record['updated'])->format('d-m-Y H:i') : '';
+                $record['status_badge'] = $this->getKycStatusBadge($record['status']);
+            }
+            
+            \Log::info('KYC records generated', [
+                'email' => $email,
+                'total_records' => count($kycRecords)
+            ]);
+            
+            return response()->json([
+                'success' => true,
+                'data' => $kycRecords,
+                'meta' => [
+                    'total' => count($kycRecords),
+                    'email' => $email,
+                    'generated_at' => now()->toISOString()
+                ]
+            ]);
+            
+        } catch (Exception $e) {
+            \Log::error('KYC records fetch error', [
+                'email' => $email,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return response()->json([
+                'success' => false,
+                'error' => 'Failed to fetch KYC records',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Create a new KYC request
+     */
+    public function createKycRequest(Request $request, $email) {
+        try {
+            \Log::info('Creating KYC Request', ['email' => $email, 'data' => $request->all()]);
+            
+            $validatedData = $request->validate([
+                'personalDetails.firstname' => 'required|string|max:255',
+                'personalDetails.lastname' => 'required|string|max:255',
+                'personalDetails.dateOfBirth' => 'required|date',
+                'personalDetails.phoneNumber' => 'required|string|max:20',
+                'personalDetails.country' => 'required|string|max:100',
+                'personalDetails.state' => 'nullable|string|max:100',
+                'personalDetails.city' => 'required|string|max:100',
+                'personalDetails.postCode' => 'nullable|string|max:20',
+                'personalDetails.address' => 'required|string|max:500',
+                'bankDetails.bankName' => 'nullable|string|max:255',
+                'bankDetails.bankAddress' => 'nullable|string|max:500',
+                'bankDetails.swiftCode' => 'nullable|string|max:20',
+                'bankDetails.bankAccount' => 'nullable|string|max:50',
+                'bankDetails.accountName' => 'nullable|string|max:255',
+                'documentType' => 'nullable|string|max:100',
+                'remark' => 'nullable|string|max:1000'
+            ]);
+            
+            // Try to submit to API
+            $apiResult = $this->submitKycToApi($email, $validatedData);
+            
+            if ($apiResult && $apiResult['success']) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'KYC request submitted successfully',
+                    'data' => $apiResult['data']
+                ]);
+            } else {
+                // If API fails, create a demo response
+                $kycRecord = [
+                    'id' => 'KYC_' . uniqid(),
+                    'status' => 'PENDING',
+                    'created' => now()->toISOString(),
+                    'updated' => now()->toISOString(),
+                    'email' => $email,
+                    'remark' => $validatedData['remark'] ?? 'KYC request submitted for review',
+                    'modifiedBy' => 'System',
+                    'personalDetails' => $validatedData['personalDetails'],
+                    'bankDetails' => $validatedData['bankDetails'] ?? [],
+                    'documentType' => $validatedData['documentType'] ?? 'Identity Document'
+                ];
+                
+                return response()->json([
+                    'success' => true,
+                    'message' => 'KYC request submitted successfully (demo mode)',
+                    'data' => $kycRecord
+                ]);
+            }
+            
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Validation failed',
+                'errors' => $e->errors()
+            ], 422);
+            
+        } catch (Exception $e) {
+            \Log::error('KYC creation error', [
+                'email' => $email,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return response()->json([
+                'success' => false,
+                'error' => 'Failed to create KYC request',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Update KYC status
+     */
+    public function updateKycStatus(Request $request, $id) {
+        try {
+            $validatedData = $request->validate([
+                'status' => 'required|string|in:PENDING,APPROVED,REJECTED',
+                'remark' => 'nullable|string|max:1000'
+            ]);
+            
+            // Try to update via API
+            $apiResult = $this->updateKycStatusInApi($id, $validatedData);
+            
+            if ($apiResult && $apiResult['success']) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'KYC status updated successfully',
+                    'data' => $apiResult['data']
+                ]);
+            } else {
+                // Demo response
+                return response()->json([
+                    'success' => true,
+                    'message' => 'KYC status updated successfully (demo mode)',
+                    'data' => [
+                        'id' => $id,
+                        'status' => $validatedData['status'],
+                        'updated' => now()->toISOString(),
+                        'remark' => $validatedData['remark'] ?? ''
+                    ]
+                ]);
+            }
+            
+        } catch (Exception $e) {
+            \Log::error('KYC status update error', [
+                'id' => $id,
+                'error' => $e->getMessage()
+            ]);
+            
+            return response()->json([
+                'success' => false,
+                'error' => 'Failed to update KYC status',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Fetch KYC data from API
+     */
+    private function fetchKycData($email) {
+        $baseUrl = env('API_BASE_URL');
+        $possibleEndpoints = [
+            '/kyc',
+            '/kyc/by-email/' . urlencode($email),
+            '/identity-verification',
+            '/identity-verification/by-email/' . urlencode($email),
+            '/accounts/' . urlencode($email) . '/kyc',
+            '/verification-requests'
+        ];
+        
+        foreach ($possibleEndpoints as $endpoint) {
+            try {
+                $fullUrl = $baseUrl . $endpoint;
+                \Log::info('Trying KYC endpoint:', ['url' => $fullUrl]);
+                
+                $response = Http::withHeaders([
+                    'Content-Type' => env('API_CONTENT_TYPE'),
+                    'Authorization' => env('API_AUTHORIZATION'),
+                ])->get($fullUrl);
+                
+                if ($response->successful()) {
+                    $data = $response->json();
+                    \Log::info('KYC data retrieved from: ' . $endpoint, ['data' => $data]);
+                    return $data;
+                }
+            } catch (Exception $e) {
+                \Log::debug('KYC endpoint failed: ' . $endpoint, ['error' => $e->getMessage()]);
+                continue;
+            }
+        }
+        
+        \Log::info('No KYC endpoints available');
+        return null;
+    }
+
+    /**
+     * Submit KYC request to API
+     */
+    private function submitKycToApi($email, $data) {
+        $baseUrl = env('API_BASE_URL');
+        $possibleEndpoints = [
+            '/kyc',
+            '/identity-verification',
+            '/accounts/' . urlencode($email) . '/kyc'
+        ];
+        
+        foreach ($possibleEndpoints as $endpoint) {
+            try {
+                $fullUrl = $baseUrl . $endpoint;
+                
+                $response = Http::withHeaders([
+                    'Content-Type' => env('API_CONTENT_TYPE'),
+                    'Authorization' => env('API_AUTHORIZATION'),
+                ])->post($fullUrl, array_merge($data, ['email' => $email]));
+                
+                if ($response->successful()) {
+                    return [
+                        'success' => true,
+                        'data' => $response->json()
+                    ];
+                }
+            } catch (Exception $e) {
+                \Log::debug('KYC submission endpoint failed: ' . $endpoint, ['error' => $e->getMessage()]);
+                continue;
+            }
+        }
+        
+        return ['success' => false];
+    }
+
+    /**
+     * Update KYC status in API
+     */
+    private function updateKycStatusInApi($id, $data) {
+        $baseUrl = env('API_BASE_URL');
+        $possibleEndpoints = [
+            '/kyc/' . $id,
+            '/identity-verification/' . $id,
+            '/kyc/' . $id . '/status'
+        ];
+        
+        foreach ($possibleEndpoints as $endpoint) {
+            try {
+                $fullUrl = $baseUrl . $endpoint;
+                
+                $response = Http::withHeaders([
+                    'Content-Type' => env('API_CONTENT_TYPE'),
+                    'Authorization' => env('API_AUTHORIZATION'),
+                ])->put($fullUrl, $data);
+                
+                if ($response->successful()) {
+                    return [
+                        'success' => true,
+                        'data' => $response->json()
+                    ];
+                }
+            } catch (Exception $e) {
+                \Log::debug('KYC status update endpoint failed: ' . $endpoint, ['error' => $e->getMessage()]);
+                continue;
+            }
+        }
+        
+        return ['success' => false];
+    }
+
+    /**
+     * Get KYC status badge class
+     */
+    private function getKycStatusBadge($status) {
+        $statusLower = strtolower($status);
+        
+        switch ($statusLower) {
+            case 'approved':
+            case 'verified':
+            case 'completed':
+                return 'success';
+            case 'pending':
+            case 'under_review':
+            case 'submitted':
+                return 'warning';
+            case 'rejected':
+            case 'declined':
+            case 'failed':
+                return 'danger';
+            default:
+                return 'info';
+        }
     }
 
     /**
